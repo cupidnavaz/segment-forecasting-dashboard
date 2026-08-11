@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "segment-forecasting-dashboard"
+version = "1.0.0"
+description = "A production-structured Python dashboard for segment forecasting, scenario analysis, risk assessment, and executive reporting."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "CupidCreativeX Ventures" }]
+keywords = ["forecasting", "dashboard", "business-intelligence", "streamlit", "analytics"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+  "numpy>=2.0,<3",
+  "pandas>=2.2,<3",
+  "plotly>=5.24,<7",
+  "streamlit>=1.40,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<9",
+  "ruff>=0.9,<1",
+  "mypy>=1.13,<2",
+]
+
+[project.scripts]
+segment-dashboard = "segment_forecasting_dashboard.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/segment_forecasting_dashboard"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
