@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="800" viewBox="0 0 2400 800">
+  <rect width="100%" height="100%" fill="#0b1220"/>
+  <text x="60" y="60" font-size="36" fill="#fff" font-family="Arial">Mockup: Multi-monitor hero</text>
+  <g transform="translate(60,100)">
+    <rect width="1400" height="560" rx="12" fill="#fff" opacity="0.04"/>
+    <text x="24" y="40" font-size="18" fill="#e2e8f0">Large-format dashboard panels: market share, radial comparisons, KPI tiles</text>
+  </g>
+  <text x="2200" y="780" font-size="12" fill="#94a3b8">Image: mockup-multi-monitor-hero.svg</text>
+</svg>
