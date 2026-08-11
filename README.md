@@ -1,8 +1,8 @@
 # Segment Forecasting Dashboard
 
-A standard Python rebuild of the supplied `ultramodern.html` forecasting dashboard.
+A standard Python rebuild of my initial segments forecasting dashboard built with just HTML, CSS & Javascript.
 
-The project separates the original dashboard's data model, calculation engine, advisory logic, charting, reporting, tests, and UI into maintainable Python modules. The application uses Streamlit for the interactive dashboard and Plotly for visualizations.
+Unlike the initial project which contained both the enhine and the design in just one simple HTML file, This project separates the original dashboard's data model, calculation engine, advisory logic, charting, reporting, tests, and UI into maintainable Python modules. The application uses Streamlit for the interactive dashboard and Plotly for visualizations.
 
 ## Features
 
@@ -24,7 +24,7 @@ The project separates the original dashboard's data model, calculation engine, a
 
 ## Source lineage
 
-The original supplied file was `ultramodern.html`. Its JavaScript calculation engine defined the canonical segment dataset and formulas. This rebuild preserves those business rules while moving them into Python modules.
+The initial project was built as a demo to try out insights. Its JavaScript calculation engine defined the canonical segment dataset and formulas. This rebuild preserves those business rules while moving them into Python modules.
 
 The original market ticker is retained only as a static data fixture in this version. It should not be presented as real-time financial data without connecting it to a verified market-data provider.
 
