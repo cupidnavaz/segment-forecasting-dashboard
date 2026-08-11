@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1440" viewBox="0 0 800 1440">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <rect x="20" y="20" width="760" height="120" rx="10" fill="#0f1724"/>
+  <text x="40" y="80" font-size="28" fill="#ffffff">Mockup: Mobile header — Segment Performance Dashboard</text>
+  <g transform="translate(40,160)">
+    <rect width="720" height="260" rx="12" fill="#eef2ff"/>
+    <text x="20" y="44" font-size="20" fill="#0f1724">Hero card: Predict from Data. Decide with Confidence.</text>
+  </g>
+  <text x="40" y="460" font-size="16" fill="#475569">Key metrics tiles and small charts — compact mobile layout</text>
+  <text x="40" y="1400" font-size="12" fill="#94a3b8">Image: mockup-mobile-header.svg</text>
+</svg>
