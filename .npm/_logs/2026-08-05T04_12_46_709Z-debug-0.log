@@ -1,0 +1,63 @@
+0 verbose cli /data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/usr/bin/npm
+1 info using npm@11.17.0
+2 info using node@v26.3.1
+3 silly config load:file:/data/data/com.termux/files/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/data/data/com.termux/files/home/.npmrc
+5 silly config load:file:/data/data/com.termux/files/usr/etc/npmrc
+6 verbose title npm install turbo
+7 verbose argv "install" "--global" "turbo"
+8 verbose logfile logs-max:10 dir:/data/data/com.termux/files/home/.npm/_logs/2026-08-05T04_12_46_709Z-
+9 verbose logfile /data/data/com.termux/files/home/.npm/_logs/2026-08-05T04_12_46_709Z-debug-0.log
+10 silly packumentCache heap:1101529088 maxSize:275382272 maxEntrySize:137691136
+11 silly logfile done cleaning log files
+12 silly idealTree buildDeps
+13 silly fetch manifest turbo@*
+14 silly packumentCache full:https://registry.npmjs.org/turbo cache-miss
+15 http fetch GET 200 https://registry.npmjs.org/turbo 1812ms (cache miss)
+16 silly packumentCache full:https://registry.npmjs.org/turbo set size:undefined disposed:false
+17 silly placeDep ROOT turbo@2.10.8 OK for:  want: *
+18 silly fetch manifest @turbo/linux-64@2.10.8
+19 silly packumentCache full:https://registry.npmjs.org/@turbo%2flinux-64 cache-miss
+20 silly fetch manifest @turbo/darwin-64@2.10.8
+21 silly packumentCache full:https://registry.npmjs.org/@turbo%2fdarwin-64 cache-miss
+22 silly fetch manifest @turbo/windows-64@2.10.8
+23 silly packumentCache full:https://registry.npmjs.org/@turbo%2fwindows-64 cache-miss
+24 silly fetch manifest @turbo/linux-arm64@2.10.8
+25 silly packumentCache full:https://registry.npmjs.org/@turbo%2flinux-arm64 cache-miss
+26 silly fetch manifest @turbo/darwin-arm64@2.10.8
+27 silly packumentCache full:https://registry.npmjs.org/@turbo%2fdarwin-arm64 cache-miss
+28 silly fetch manifest @turbo/windows-arm64@2.10.8
+29 silly packumentCache full:https://registry.npmjs.org/@turbo%2fwindows-arm64 cache-miss
+30 http fetch GET 200 https://registry.npmjs.org/@turbo%2flinux-64 357ms (cache miss)
+31 silly packumentCache full:https://registry.npmjs.org/@turbo%2flinux-64 set size:undefined disposed:false
+32 http fetch GET 200 https://registry.npmjs.org/@turbo%2flinux-arm64 1135ms (cache miss)
+33 silly packumentCache full:https://registry.npmjs.org/@turbo%2flinux-arm64 set size:undefined disposed:false
+34 http fetch GET 200 https://registry.npmjs.org/@turbo%2fwindows-64 1176ms (cache miss)
+35 silly packumentCache full:https://registry.npmjs.org/@turbo%2fwindows-64 set size:undefined disposed:false
+36 http fetch GET 200 https://registry.npmjs.org/@turbo%2fdarwin-64 1216ms (cache miss)
+37 silly packumentCache full:https://registry.npmjs.org/@turbo%2fdarwin-64 set size:undefined disposed:false
+38 http fetch GET 200 https://registry.npmjs.org/@turbo%2fdarwin-arm64 1232ms (cache miss)
+39 silly packumentCache full:https://registry.npmjs.org/@turbo%2fdarwin-arm64 set size:undefined disposed:false
+40 http fetch GET 200 https://registry.npmjs.org/@turbo%2fwindows-arm64 1263ms (cache miss)
+41 silly packumentCache full:https://registry.npmjs.org/@turbo%2fwindows-arm64 set size:undefined disposed:false
+42 silly placeDep node_modules/turbo @turbo/darwin-64@2.10.8 OK for: turbo@2.10.8 want: 2.10.8
+43 silly placeDep node_modules/turbo @turbo/darwin-arm64@2.10.8 OK for: turbo@2.10.8 want: 2.10.8
+44 silly placeDep node_modules/turbo @turbo/linux-64@2.10.8 OK for: turbo@2.10.8 want: 2.10.8
+45 silly placeDep node_modules/turbo @turbo/linux-arm64@2.10.8 OK for: turbo@2.10.8 want: 2.10.8
+46 silly placeDep node_modules/turbo @turbo/windows-64@2.10.8 OK for: turbo@2.10.8 want: 2.10.8
+47 silly placeDep node_modules/turbo @turbo/windows-arm64@2.10.8 OK for: turbo@2.10.8 want: 2.10.8
+48 silly reify moves {}
+49 http cache turbo@https://registry.npmjs.org/turbo/-/turbo-2.10.8.tgz 1ms (cache hit)
+50 silly tarball no local data for turbo@https://registry.npmjs.org/turbo/-/turbo-2.10.8.tgz. Extracting by manifest.
+51 http cache @turbo/linux-arm64@https://registry.npmjs.org/@turbo/linux-arm64/-/linux-arm64-2.10.8.tgz 0ms (cache hit)
+52 silly tarball no local data for @turbo/linux-arm64@https://registry.npmjs.org/@turbo/linux-arm64/-/linux-arm64-2.10.8.tgz. Extracting by manifest.
+53 http fetch GET 200 https://registry.npmjs.org/turbo/-/turbo-2.10.8.tgz 443ms (cache miss)
+54 http fetch GET 200 https://registry.npmjs.org/@turbo/linux-arm64/-/linux-arm64-2.10.8.tgz 6884ms (cache miss)
+55 silly ADD node_modules/turbo
+56 silly ADD node_modules/turbo/node_modules/@turbo/linux-arm64
+57 verbose cwd /data/data/com.termux/files/home/screenbridge
+58 verbose os Linux 4.19.127-g9ca891527cee-dirty
+59 verbose node v26.3.1
+60 verbose npm  v11.17.0
+61 verbose exit 0
+62 info ok
