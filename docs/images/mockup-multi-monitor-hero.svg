@@ -1,79 +1,163 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2400" height="800" viewBox="0 0 2400 800">
   <rect width="2400" height="800" fill="#f5f6f8"/>
   <g font-family="Inter, Segoe UI, Arial, sans-serif">
-    <rect x="70" y="30" width="2260" height="740" rx="20" fill="#edf3f7"/>
-    <text x="120" y="110" font-size="42" font-weight="700" fill="#1f2a37">Segment Forecasting Dashboard</text>
-    <text x="120" y="150" font-size="18" fill="#6b7280">CupidCreativeX Ventures • Forecasting, scenario analysis, risk intelligence, and executive reporting</text>
+    <rect x="0" y="0" width="220" height="800" fill="#f8fafc" stroke="#dfe7ef"/>
+    <text x="26" y="60" font-size="30" font-weight="600" fill="#1f2a37">Controls</text>
 
-    <rect x="120" y="180" width="2140" height="170" rx="20" fill="#dfeef4"/>
-    <text x="180" y="255" font-size="54" font-weight="700" fill="#1f2a37">Forecast command center</text>
-    <text x="180" y="307" font-size="26" fill="#48576a">Turn segment economics into an explainable forecast instead of making executives stare at decorative charts and hope.</text>
+    <text x="24" y="140" font-size="18" fill="#4b647d">Scenario growth adjustment</text>
+    <text x="24" y="176" font-size="16" fill="#4b647d">+0.0%</text>
+    <rect x="24" y="188" width="160" height="6" fill="#dfe7ef" rx="3"/>
+    <rect x="24" y="188" width="80" height="6" fill="#4a90e2" rx="3"/>
 
-    <g transform="translate(120, 390)">
-      <rect x="0" y="0" width="370" height="130" rx="16" fill="#f8fafc" stroke="#dfe7ef"/>
-      <text x="32" y="42" font-size="18" fill="#57687d">Revenue</text>
-      <text x="32" y="96" font-size="40" font-weight="700" fill="#1f2a37">4,620.0</text>
+    <text x="24" y="250" font-size="18" fill="#4b647d">Risk</text>
+    <rect x="24" y="270" width="150" height="34" fill="#f5f7fa" stroke="#dfe7ef" rx="6"/>
+    <text x="42" y="293" font-size="17" fill="#1f2a37">all</text>
 
-      <rect x="390" y="0" width="370" height="130" rx="16" fill="#f8fafc" stroke="#dfe7ef"/>
-      <text x="422" y="42" font-size="18" fill="#57687d">Profit</text>
-      <text x="422" y="96" font-size="40" font-weight="700" fill="#1f2a37">1,340.0</text>
+    <text x="24" y="350" font-size="18" fill="#4b647d">Status</text>
+    <rect x="24" y="368" width="150" height="34" fill="#f5f7fa" stroke="#dfe7ef" rx="6"/>
+    <text x="42" y="391" font-size="17" fill="#1f2a37">all</text>
 
-      <rect x="780" y="0" width="360" height="130" rx="16" fill="#f8fafc" stroke="#dfe7ef"/>
-      <text x="812" y="42" font-size="18" fill="#57687d">Avg Growth</text>
-      <text x="812" y="96" font-size="40" font-weight="700" fill="#1f2a37">23.6%</text>
+    <text x="24" y="450" font-size="18" fill="#4b647d">Trend</text>
+    <rect x="24" y="468" width="150" height="34" fill="#f5f7fa" stroke="#dfe7ef" rx="6"/>
+    <text x="42" y="491" font-size="17" fill="#1f2a37">all</text>
 
-      <rect x="1160" y="0" width="360" height="130" rx="16" fill="#f8fafc" stroke="#dfe7ef"/>
-      <text x="1192" y="42" font-size="18" fill="#57687d">Avg Confidence</text>
-      <text x="1192" y="96" font-size="40" font-weight="700" fill="#1f2a37">67%</text>
+    <text x="24" y="550" font-size="18" fill="#4b647d">Sort by</text>
+    <rect x="24" y="566" width="150" height="34" fill="#f5f7fa" stroke="#dfe7ef" rx="6"/>
+    <text x="42" y="589" font-size="17" fill="#1f2a37">scenario_growth</text>
 
-      <rect x="1540" y="0" width="360" height="130" rx="16" fill="#f8fafc" stroke="#dfe7ef"/>
-      <text x="1572" y="42" font-size="18" fill="#57687d">High Risk</text>
-      <text x="1572" y="96" font-size="40" font-weight="700" fill="#1f2a37">3</text>
+    <g transform="translate(24,640)">
+      <rect x="0" y="0" width="20" height="12" rx="6" fill="#dfe7ef"/>
+      <circle cx="12" cy="6" r="4" fill="#f8fafc"/>
     </g>
+    <text x="54" y="648" font-size="18" fill="#4b647d">Ascending</text>
 
-    <g transform="translate(120, 560)">
-      <rect x="0" y="0" width="1040" height="170" rx="18" fill="#f8fafc" stroke="#dfe7ef"/>
-      <text x="34" y="40" font-size="30" font-weight="700" fill="#1f2a37">Revenue and profit</text>
-      <g transform="translate(60 60)">
-        <g stroke="#d9e2ef" stroke-width="1.4">
-          <line x1="0" y1="75" x2="900" y2="75"/>
-          <line x1="0" y1="45" x2="900" y2="45"/>
-          <line x1="0" y1="15" x2="900" y2="15"/>
-          <line x1="0" y1="75" x2="0" y2="0"/>
-          <line x1="180" y1="75" x2="180" y2="0"/>
-          <line x1="360" y1="75" x2="360" y2="0"/>
-          <line x1="540" y1="75" x2="540" y2="0"/>
-          <line x1="720" y1="75" x2="720" y2="0"/>
-          <line x1="900" y1="75" x2="900" y2="0"/>
-        </g>
-        <g fill="#4c92e4">
-          <rect x="18" y="35" width="30" height="40" rx="4"/>
-          <rect x="198" y="18" width="30" height="57" rx="4"/>
-          <rect x="378" y="14" width="30" height="61" rx="4"/>
-          <rect x="558" y="28" width="30" height="47" rx="4"/>
-          <rect x="738" y="16" width="30" height="59" rx="4"/>
-        </g>
-        <g fill="#9ad6ee">
-          <rect x="54" y="47" width="30" height="28" rx="4"/>
-          <rect x="234" y="42" width="30" height="33" rx="4"/>
-          <rect x="414" y="38" width="30" height="37" rx="4"/>
-          <rect x="594" y="49" width="30" height="26" rx="4"/>
-          <rect x="774" y="36" width="30" height="39" rx="4"/>
-        </g>
+    <rect x="24" y="690" width="150" height="36" fill="#f8fafc" stroke="#dfe7ef" rx="8"/>
+    <text x="56" y="714" font-size="18" fill="#1f2a37">Reset dataset</text>
+
+    <g transform="translate(220,0)">
+      <rect x="0" y="0" width="2180" height="800" fill="#f5f6f8"/>
+      <g transform="translate(40,30)">
+        <rect x="0" y="0" width="2080" height="170" rx="18" fill="#dfeef4"/>
+        <text x="40" y="82" font-size="58" font-weight="700" fill="#1f2a37">Forecast command center</text>
+        <text x="40" y="122" font-size="22" fill="#48576a">Turn segment economics into an explainable forecast instead of making executives stare at decorative charts and hope.</text>
       </g>
-    </g>
 
-    <g transform="translate(1180, 560)">
-      <rect x="0" y="0" width="1040" height="170" rx="18" fill="#f8fafc" stroke="#dfe7ef"/>
-      <text x="34" y="40" font-size="30" font-weight="700" fill="#1f2a37">Revenue mix</text>
-      <g transform="translate(200 15)">
-        <circle cx="300" cy="80" r="70" fill="none" stroke="#d9e2ef" stroke-width="2"/>
-        <path d="M300 80 L300 10 A70 70 0 0 1 345 40 Z" fill="#2cc3d4"/>
-        <path d="M300 80 L345 40 A70 70 0 0 1 365 127 Z" fill="#4d96e8"/>
-        <path d="M300 80 L365 127 A70 70 0 0 1 260 145 Z" fill="#ef6b5b"/>
-        <path d="M300 80 L260 145 A70 70 0 0 1 220 35 Z" fill="#8a69d9"/>
-        <path d="M300 80 L220 35 A70 70 0 0 1 300 10 Z" fill="#4bb99c"/>
-        <circle cx="300" cy="80" r="40" fill="#f8fafc"/>
+      <g transform="translate(40,220)">
+        <rect x="0" y="0" width="300" height="80" rx="14" fill="#f8fafc" stroke="#dfe7ef"/>
+        <text x="18" y="28" font-size="16" fill="#57687d">Revenue</text>
+        <text x="18" y="62" font-size="28" font-weight="700" fill="#1f2a37">4,620.0</text>
+
+        <rect x="320" y="0" width="300" height="80" rx="14" fill="#f8fafc" stroke="#dfe7ef"/>
+        <text x="338" y="28" font-size="16" fill="#57687d">Profit</text>
+        <text x="338" y="62" font-size="28" font-weight="700" fill="#1f2a37">1,340.0</text>
+
+        <rect x="640" y="0" width="300" height="80" rx="14" fill="#f8fafc" stroke="#dfe7ef"/>
+        <text x="658" y="28" font-size="16" fill="#57687d">Avg Growth</text>
+        <text x="658" y="62" font-size="28" font-weight="700" fill="#1f2a37">23.6%</text>
+
+        <rect x="960" y="0" width="300" height="80" rx="14" fill="#f8fafc" stroke="#dfe7ef"/>
+        <text x="978" y="28" font-size="16" fill="#57687d">Avg Confidence</text>
+        <text x="978" y="62" font-size="28" font-weight="700" fill="#1f2a37">67%</text>
+
+        <rect x="1280" y="0" width="300" height="80" rx="14" fill="#f8fafc" stroke="#dfe7ef"/>
+        <text x="1298" y="28" font-size="16" fill="#57687d">High Risk</text>
+        <text x="1298" y="62" font-size="28" font-weight="700" fill="#1f2a37">3</text>
+      </g>
+
+      <g transform="translate(40,340)">
+        <text x="0" y="28" font-size="18" fill="#4b647d">Overview</text>
+        <text x="105" y="28" font-size="18" fill="#4b647d">Forecast table</text>
+        <text x="255" y="28" font-size="18" fill="#4b647d">Advisory</text>
+        <text x="365" y="28" font-size="18" fill="#4b647d">Executive report</text>
+        <line x1="0" y1="40" x2="1520" y2="40" stroke="#dfe7ef"/>
+        <line x1="0" y1="40" x2="90" y2="40" stroke="#4a90e2" stroke-width="3"/>
+      </g>
+
+      <g transform="translate(40,420)">
+        <rect x="0" y="0" width="1980" height="300" fill="#f8fafc" stroke="#dfe7ef"/>
+        <g fill="#1f2a37" font-size="16" font-weight="600">
+          <text x="26" y="26">Segment</text>
+          <text x="190" y="26">Period</text>
+          <text x="310" y="26">Revenue</text>
+          <text x="420" y="26">Costs</text>
+          <text x="510" y="26">Profit</text>
+          <text x="590" y="26">Growth %</text>
+          <text x="690" y="26">Margin %</text>
+          <text x="780" y="26">Confidence</text>
+          <text x="900" y="26">Risk</text>
+          <text x="970" y="26">Status</text>
+          <text x="1050" y="26">Trend</text>
+          <text x="1125" y="26">Market Share</text>
+          <text x="1250" y="26">CAC</text>
+          <text x="1325" y="26">Churn</text>
+          <text x="1410" y="26">Competitors</text>
+        </g>
+
+        <g fill="#1f2a37" font-size="16">
+          <text x="26" y="70">Tech &amp; SaaS</text>
+          <text x="190" y="70">2024 - 2030</text>
+          <text x="310" y="70">950</text>
+          <text x="420" y="70">520</text>
+          <text x="510" y="70">430</text>
+          <text x="590" y="70">47.0%</text>
+          <text x="690" y="70">45.26</text>
+          <text x="780" y="70">83</text>
+          <text x="900" y="70">low</text>
+          <text x="970" y="70">active</text>
+          <text x="1050" y="70">up</text>
+          <text x="1125" y="70">31.2</text>
+          <text x="1250" y="70">85</text>
+          <text x="1325" y="70">4.8</text>
+          <text x="1410" y="70">2</text>
+
+          <text x="26" y="112">Financial Services</text>
+          <text x="190" y="112">2024 - 2029</text>
+          <text x="310" y="112">820</text>
+          <text x="420" y="112">580</text>
+          <text x="510" y="112">240</text>
+          <text x="590" y="112">30.1%</text>
+          <text x="690" y="112">29.27</text>
+          <text x="780" y="112">76</text>
+          <text x="900" y="112">medium</text>
+          <text x="970" y="112">active</text>
+          <text x="1050" y="112">up</text>
+          <text x="1125" y="112">24</text>
+          <text x="1250" y="112">120</text>
+          <text x="1325" y="112">5.5</text>
+          <text x="1410" y="112">3</text>
+
+          <text x="26" y="154">Logistics</text>
+          <text x="190" y="154">2024 - 2028</text>
+          <text x="310" y="154">580</text>
+          <text x="420" y="154">410</text>
+          <text x="510" y="154">170</text>
+          <text x="590" y="154">30.1%</text>
+          <text x="690" y="154">29.31</text>
+          <text x="780" y="154">73</text>
+          <text x="900" y="154">medium</text>
+          <text x="970" y="154">active</text>
+          <text x="1050" y="154">up</text>
+          <text x="1125" y="154">15.8</text>
+          <text x="1250" y="154">28</text>
+          <text x="1325" y="154">7.3</text>
+          <text x="1410" y="154">4</text>
+
+          <text x="26" y="196">Retail &amp; E-Commerce</text>
+          <text x="190" y="196">2024 - 2028</text>
+          <text x="310" y="196">450</text>
+          <text x="420" y="196">320</text>
+          <text x="510" y="196">130</text>
+          <text x="590" y="196">29.4%</text>
+          <text x="690" y="196">28.89</text>
+          <text x="780" y="196">67</text>
+          <text x="900" y="196">medium</text>
+          <text x="970" y="196">active</text>
+          <text x="1050" y="196">up</text>
+          <text x="1125" y="196">18.5</text>
+          <text x="1250" y="196">45</text>
+          <text x="1325" y="196">8.2</text>
+          <text x="1410" y="196">4</text>
+        </g>
       </g>
     </g>
   </g>

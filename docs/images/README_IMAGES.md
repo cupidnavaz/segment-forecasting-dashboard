@@ -1,13 +1,13 @@
 # Image mockups and notes
 
-These dashboard visualizations were derived from the screenshots supplied for this project and are meant to serve as lightweight, display-ready README assets until final production screenshots are committed.
+These dashboard visuals were updated to match the supplied screenshots (Images 5-8) and are intended to serve as lightweight, display-ready README assets until final production captures are committed.
 
 Files included:
 
-- mockup-dashboard-overview.svg — overview / desktop dashboard layout
-- mockup-segment-card.svg — segment card and summary layout
-- mockup-mobile-header.svg — mobile / narrow viewport header and summary view
-- mockup-multi-monitor-hero.svg — wide hero composition for multi-monitor display
+- mockup-dashboard-overview.svg — revenue mix donut chart
+- mockup-segment-card.svg — executive summary and forecast table
+- mockup-mobile-header.svg — forecast command center and advisory table
+- mockup-multi-monitor-hero.svg — wide forecast command center with table
 
 Guidance:
 - Replace these SVGs with final PNG/JPEG/MP4 screenshots when a polished production capture is ready.
