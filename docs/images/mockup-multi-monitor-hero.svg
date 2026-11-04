@@ -1,9 +1,80 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2400" height="800" viewBox="0 0 2400 800">
-  <rect width="100%" height="100%" fill="#0b1220"/>
-  <text x="60" y="60" font-size="36" fill="#fff" font-family="Arial">Mockup: Multi-monitor hero</text>
-  <g transform="translate(60,100)">
-    <rect width="1400" height="560" rx="12" fill="#fff" opacity="0.04"/>
-    <text x="24" y="40" font-size="18" fill="#e2e8f0">Large-format dashboard panels: market share, radial comparisons, KPI tiles</text>
+  <rect width="2400" height="800" fill="#f5f6f8"/>
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <rect x="70" y="30" width="2260" height="740" rx="20" fill="#edf3f7"/>
+    <text x="120" y="110" font-size="42" font-weight="700" fill="#1f2a37">Segment Forecasting Dashboard</text>
+    <text x="120" y="150" font-size="18" fill="#6b7280">CupidCreativeX Ventures • Forecasting, scenario analysis, risk intelligence, and executive reporting</text>
+
+    <rect x="120" y="180" width="2140" height="170" rx="20" fill="#dfeef4"/>
+    <text x="180" y="255" font-size="54" font-weight="700" fill="#1f2a37">Forecast command center</text>
+    <text x="180" y="307" font-size="26" fill="#48576a">Turn segment economics into an explainable forecast instead of making executives stare at decorative charts and hope.</text>
+
+    <g transform="translate(120, 390)">
+      <rect x="0" y="0" width="370" height="130" rx="16" fill="#f8fafc" stroke="#dfe7ef"/>
+      <text x="32" y="42" font-size="18" fill="#57687d">Revenue</text>
+      <text x="32" y="96" font-size="40" font-weight="700" fill="#1f2a37">4,620.0</text>
+
+      <rect x="390" y="0" width="370" height="130" rx="16" fill="#f8fafc" stroke="#dfe7ef"/>
+      <text x="422" y="42" font-size="18" fill="#57687d">Profit</text>
+      <text x="422" y="96" font-size="40" font-weight="700" fill="#1f2a37">1,340.0</text>
+
+      <rect x="780" y="0" width="360" height="130" rx="16" fill="#f8fafc" stroke="#dfe7ef"/>
+      <text x="812" y="42" font-size="18" fill="#57687d">Avg Growth</text>
+      <text x="812" y="96" font-size="40" font-weight="700" fill="#1f2a37">23.6%</text>
+
+      <rect x="1160" y="0" width="360" height="130" rx="16" fill="#f8fafc" stroke="#dfe7ef"/>
+      <text x="1192" y="42" font-size="18" fill="#57687d">Avg Confidence</text>
+      <text x="1192" y="96" font-size="40" font-weight="700" fill="#1f2a37">67%</text>
+
+      <rect x="1540" y="0" width="360" height="130" rx="16" fill="#f8fafc" stroke="#dfe7ef"/>
+      <text x="1572" y="42" font-size="18" fill="#57687d">High Risk</text>
+      <text x="1572" y="96" font-size="40" font-weight="700" fill="#1f2a37">3</text>
+    </g>
+
+    <g transform="translate(120, 560)">
+      <rect x="0" y="0" width="1040" height="170" rx="18" fill="#f8fafc" stroke="#dfe7ef"/>
+      <text x="34" y="40" font-size="30" font-weight="700" fill="#1f2a37">Revenue and profit</text>
+      <g transform="translate(60 60)">
+        <g stroke="#d9e2ef" stroke-width="1.4">
+          <line x1="0" y1="75" x2="900" y2="75"/>
+          <line x1="0" y1="45" x2="900" y2="45"/>
+          <line x1="0" y1="15" x2="900" y2="15"/>
+          <line x1="0" y1="75" x2="0" y2="0"/>
+          <line x1="180" y1="75" x2="180" y2="0"/>
+          <line x1="360" y1="75" x2="360" y2="0"/>
+          <line x1="540" y1="75" x2="540" y2="0"/>
+          <line x1="720" y1="75" x2="720" y2="0"/>
+          <line x1="900" y1="75" x2="900" y2="0"/>
+        </g>
+        <g fill="#4c92e4">
+          <rect x="18" y="35" width="30" height="40" rx="4"/>
+          <rect x="198" y="18" width="30" height="57" rx="4"/>
+          <rect x="378" y="14" width="30" height="61" rx="4"/>
+          <rect x="558" y="28" width="30" height="47" rx="4"/>
+          <rect x="738" y="16" width="30" height="59" rx="4"/>
+        </g>
+        <g fill="#9ad6ee">
+          <rect x="54" y="47" width="30" height="28" rx="4"/>
+          <rect x="234" y="42" width="30" height="33" rx="4"/>
+          <rect x="414" y="38" width="30" height="37" rx="4"/>
+          <rect x="594" y="49" width="30" height="26" rx="4"/>
+          <rect x="774" y="36" width="30" height="39" rx="4"/>
+        </g>
+      </g>
+    </g>
+
+    <g transform="translate(1180, 560)">
+      <rect x="0" y="0" width="1040" height="170" rx="18" fill="#f8fafc" stroke="#dfe7ef"/>
+      <text x="34" y="40" font-size="30" font-weight="700" fill="#1f2a37">Revenue mix</text>
+      <g transform="translate(200 15)">
+        <circle cx="300" cy="80" r="70" fill="none" stroke="#d9e2ef" stroke-width="2"/>
+        <path d="M300 80 L300 10 A70 70 0 0 1 345 40 Z" fill="#2cc3d4"/>
+        <path d="M300 80 L345 40 A70 70 0 0 1 365 127 Z" fill="#4d96e8"/>
+        <path d="M300 80 L365 127 A70 70 0 0 1 260 145 Z" fill="#ef6b5b"/>
+        <path d="M300 80 L260 145 A70 70 0 0 1 220 35 Z" fill="#8a69d9"/>
+        <path d="M300 80 L220 35 A70 70 0 0 1 300 10 Z" fill="#4bb99c"/>
+        <circle cx="300" cy="80" r="40" fill="#f8fafc"/>
+      </g>
+    </g>
   </g>
-  <text x="2200" y="780" font-size="12" fill="#94a3b8">Image: mockup-multi-monitor-hero.svg</text>
 </svg>

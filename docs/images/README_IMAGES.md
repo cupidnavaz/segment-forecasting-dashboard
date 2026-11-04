@@ -1,15 +1,15 @@
 # Image mockups and notes
 
-These mockup SVGs were created from the screenshots you provided (Images 1..4). They are illustrative, lightweight, and intended for inclusion in the README until production screenshots are available.
+These dashboard visualizations were derived from the screenshots supplied for this project and are meant to serve as lightweight, display-ready README assets until final production screenshots are committed.
 
-Files added:
+Files included:
 
-- mockup-dashboard-overview.svg — overview / desktop tile layout (1600×900)
-- mockup-segment-card.svg — segment detail card mockup (1200×800)
-- mockup-mobile-header.svg — mobile header and hero (800×1440)
-- mockup-multi-monitor-hero.svg — wide hero for multi-monitor display (2400×800)
+- mockup-dashboard-overview.svg — overview / desktop dashboard layout
+- mockup-segment-card.svg — segment card and summary layout
+- mockup-mobile-header.svg — mobile / narrow viewport header and summary view
+- mockup-multi-monitor-hero.svg — wide hero composition for multi-monitor display
 
 Guidance:
-- Replace these SVGs with real PNG/JPEG/MP4 assets from the app when you have final screenshots or an animated walkthrough.
-- Optimise PNGs with tools like oxipng, pngquant or JPEG optimisers before committing large images.
-- If you want an animated walkthrough, consider using an MP4 hosted in the repo or on an external CDN and linking from the README to keep repo size small.
+- Replace these SVGs with final PNG/JPEG/MP4 screenshots when a polished production capture is ready.
+- Keep the README visual assets lightweight and optimized for GitHub display.
+- If you add an animated walkthrough, consider hosting it under docs/images/ and linking it from the README.
