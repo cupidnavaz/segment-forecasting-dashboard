@@ -86,15 +86,17 @@ The default fixture includes nine business segments. The bars below are a compac
 
 | Segment | Revenue | Relative scale |
 |---|---:|:---|
-| Tech & SaaS | 950 | `██████████` |
-| Financial Services | 820 | `█████████░` |
-| Energy & Utilities | 680 | `███████░░░` |
-| Logistics | 580 | `██████░░░░` |
-| Retail & E-Commerce | 450 | `█████░░░░░` |
-| Telecom & Media | 390 | `████░░░░░░` |
-| Manufacturing | 310 | `███░░░░░░░` |
-| Consumer Goods | 230 | `██░░░░░░░░` |
-| Healthcare | 210 | `██░░░░░░░░` |
+| Tech & SaaS | 950 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 |
+| Financial Services | 820 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩▫️ |
+| Energy & Utilities | 680 | 🟨🟨🟨🟨🟨🟨🟨▫️▫️▫️ |
+| Logistics | 580 | 🟨🟨🟨🟨🟨🟨▫️▫️▫️▫️ |
+| Retail & E-Commerce | 450 | 🟧🟧🟧🟧🟧▫️▫️▫️▫️▫️ |
+| Telecom & Media | 390 | 🟧🟧🟧🟧▫️▫️▫️▫️▫️▫️ |
+| Manufacturing | 310 | 🟥🟥🟥▫️▫️▫️▫️▫️▫️▫️ |
+| Consumer Goods | 230 | 🟥🟥▫️▫️▫️▫️▫️▫️▫️▫️ |
+| Healthcare | 210 | 🟥🟥▫️▫️▫️▫️▫️▫️▫️▫️ |
+
+**Relative revenue rating:** 🟩 high · 🟨 above mid-range · 🟧 below mid-range · 🟥 low. Each bar is scaled to the highest-revenue segment; colors distinguish revenue bands.
 
 *These bars are static README illustrations, not interactive charts. Use the Streamlit app for interactive Plotly visualizations, filters, sorting, and scenario controls.*
 
@@ -161,7 +163,7 @@ segment-forecasting-dashboard/
 
 ## 🛡️ Data notes
 
-The project is a Python port of an earlier single-file HTML/JS demo. The included segment dataset and market ticker are static fixtures for illustration and reproducibility. **They are not live market data or financial advice.** See [data policy and operations](docs/operations.md) before connecting external data sources.
+The project is a Python port of an earlier single-file HTML/JS demo. The included segment dataset and market ticker are static fixtures for illustration and reproducibility. **They are not live market data or financial advice.**
 
 ## 🤝 Contributing
 
@@ -179,4 +181,4 @@ Made for clearer, more explainable segment decisions. · [⬆ Back to top](#-seg
 
 </div>
 
-> **GitHub README limitation:** GitHub sanitizes embedded HTML and does not run custom JavaScript or CSS in README files. The README uses badges, links, tables, icons, and chart visuals for a modern presentation; the actual interactive analytics are in the Streamlit app. Animated media can be added as a GIF/video asset when one is available.
+> **GitHub README limitation:** GitHub sanitizes embedded HTML and does not run custom JavaScript or CSS in README files. The README uses badges, links, tables, icons, and chart visuals for a modern project landing page.
