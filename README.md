@@ -49,16 +49,25 @@ Badges
 - PyPI: published package status (if released).
 - License and Issues: project metadata.
 
-Screenshots & demo
-- The repository includes dashboard visuals derived directly from the supplied screenshots (Images 5-8). These replace the earlier illustrative mockups and align with the final layout, chart styling, and executive reporting flow.
+## Screenshots & demo
 
-![Dashboard overview](docs/images/mockup-dashboard-overview.svg)
+The gallery below follows the supplied dashboard captures. Each view is shown at full content width so charts, table labels, and controls remain legible instead of being squeezed into small side-by-side thumbnails.
 
-![Executive summary and forecast table](docs/images/mockup-segment-card.svg)
+### Dashboard overview
 
-![Forecast command center and advisory table](docs/images/mockup-mobile-header.svg)
+![Dashboard overview with summary metrics, revenue and profit, and revenue mix](docs/images/mockup-dashboard-overview.svg)
 
-![Forecast command center with forecast table](docs/images/mockup-multi-monitor-hero.svg)
+### Growth and risk analysis
+
+![Growth trajectory and risk distribution charts with the segment health radar](docs/images/mockup-multi-monitor-hero.svg)
+
+### Segment health radar
+
+![Segment health radar with dashboard filters and source note](docs/images/mockup-segment-card.svg)
+
+### Forecast table
+
+![Forecast command center and readable segment forecast table](docs/images/mockup-mobile-header.svg)
 
 Requirements
 - Python 3.11+ (project metadata may indicate Python 3.13 compatibility when dependency wheels are available).

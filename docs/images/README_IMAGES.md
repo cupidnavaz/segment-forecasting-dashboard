@@ -1,15 +1,10 @@
-# Image mockups and notes
+# Screenshot assets
 
-These dashboard visuals were updated to match the supplied screenshots (Images 5-8) and are intended to serve as lightweight, display-ready README assets until final production captures are committed.
+These four SVG images are display-ready vector recreations based on the dashboard screenshots supplied for the README gallery. The README presents them in a single-column sequence so chart labels, dashboard controls, and table content remain clear at typical screen widths.
 
-Files included:
+- `mockup-dashboard-overview.svg` — overview, summary metrics, revenue/profit chart, and revenue mix.
+- `mockup-multi-monitor-hero.svg` — growth trajectory, risk distribution, and health radar.
+- `mockup-segment-card.svg` — health radar view with the sidebar controls.
+- `mockup-mobile-header.svg` — forecast table view with command-center KPIs and sidebar controls.
 
-- mockup-dashboard-overview.svg — revenue mix donut chart
-- mockup-segment-card.svg — executive summary and forecast table
-- mockup-mobile-header.svg — forecast command center and advisory table
-- mockup-multi-monitor-hero.svg — wide forecast command center with table
-
-Guidance:
-- Replace these SVGs with final PNG/JPEG/MP4 screenshots when a polished production capture is ready.
-- Keep the README visual assets lightweight and optimized for GitHub display.
-- If you add an animated walkthrough, consider hosting it under docs/images/ and linking it from the README.
+The SVGs are scalable and lightweight. When original image files are available in the repository, they can be referenced directly in the README instead.

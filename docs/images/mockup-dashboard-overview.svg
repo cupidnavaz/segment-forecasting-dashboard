@@ -1,32 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <rect width="1600" height="900" fill="#f5f6f8"/>
-  <g font-family="Inter, Segoe UI, Arial, sans-serif">
-    <g transform="translate(180 80)">
-      <circle cx="500" cy="340" r="240" fill="none" stroke="#dfe7ef" stroke-width="2"/>
-      <circle cx="500" cy="340" r="200" fill="none" stroke="#dfe7ef" stroke-width="2"/>
-      <circle cx="500" cy="340" r="160" fill="none" stroke="#dfe7ef" stroke-width="2"/>
-      <circle cx="500" cy="340" r="120" fill="none" stroke="#dfe7ef" stroke-width="2"/>
-      <circle cx="500" cy="340" r="80" fill="none" stroke="#dfe7ef" stroke-width="2"/>
-      <circle cx="500" cy="340" r="40" fill="none" stroke="#dfe7ef" stroke-width="2"/>
-
-      <path d="M500 340 L500 100 A240 240 0 0 1 740 332 Z" fill="#1cb9b5" opacity="0.96"/>
-      <path d="M500 340 L740 332 A240 240 0 0 1 589 553 Z" fill="#4c82d7" opacity="0.96"/>
-      <path d="M500 340 L589 553 A240 240 0 0 1 410 581 Z" fill="#f4a55a" opacity="0.96"/>
-      <path d="M500 340 L410 581 A240 240 0 0 1 251 511 Z" fill="#e66d68" opacity="0.96"/>
-      <path d="M500 340 L251 511 A240 240 0 0 1 322 187 Z" fill="#8e69d8" opacity="0.96"/>
-      <path d="M500 340 L322 187 A240 240 0 0 1 500 100 Z" fill="#d97bc0" opacity="0.96"/>
-
-      <circle cx="500" cy="340" r="120" fill="#f5f6f8"/>
-
-      <g fill="#1f2a37" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="500">
-        <text x="410" y="132">17.7%</text>
-        <text x="630" y="268">20.6%</text>
-        <text x="585" y="510">4.55%</text>
-        <text x="420" y="608">4.98%</text>
-        <text x="285" y="560">6.71%</text>
-        <text x="230" y="218">14.7%</text>
-        <text x="305" y="382">12.6%</text>
-        <text x="382" y="512">9.74%</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Segment Forecasting Dashboard overview</title>
+  <desc id="desc">Dashboard command center with summary metrics, revenue and profit bars, and a revenue mix donut chart.</desc>
+  <rect width="1600" height="1000" fill="#f7f9fc"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#111827">
+    <text x="110" y="100" font-size="44" font-weight="700">📊 Segment Forecasting Dashboard</text>
+    <text x="112" y="144" font-size="20" fill="#6b7280">CupidCreativeX Ventures • Forecasting, scenario analysis, risk intelligence, and executive reporting</text>
+    <rect x="110" y="178" width="1380" height="150" rx="18" fill="#e6f1fa" stroke="#c9def1"/>
+    <text x="145" y="238" font-size="36" font-weight="700">Forecast command center</text>
+    <text x="145" y="282" font-size="20" fill="#374151">Turn segment economics into an explainable forecast for confident executive decisions.</text>
+    <g>
+      <g transform="translate(110 350)"><rect width="260" height="116" rx="14" fill="#fff" stroke="#dce3eb"/><text x="20" y="35" font-size="18" fill="#64748b">Revenue</text><text x="20" y="86" font-size="38">4,620.0</text></g>
+      <g transform="translate(390 350)"><rect width="260" height="116" rx="14" fill="#fff" stroke="#dce3eb"/><text x="20" y="35" font-size="18" fill="#64748b">Profit</text><text x="20" y="86" font-size="38">1,340.0</text></g>
+      <g transform="translate(670 350)"><rect width="260" height="116" rx="14" fill="#fff" stroke="#dce3eb"/><text x="20" y="35" font-size="18" fill="#64748b">Avg Growth</text><text x="20" y="86" font-size="38">23.6%</text></g>
+      <g transform="translate(950 350)"><rect width="260" height="116" rx="14" fill="#fff" stroke="#dce3eb"/><text x="20" y="35" font-size="18" fill="#64748b">Avg Confidence</text><text x="20" y="86" font-size="38">67%</text></g>
+      <g transform="translate(1230 350)"><rect width="260" height="116" rx="14" fill="#fff" stroke="#dce3eb"/><text x="20" y="35" font-size="18" fill="#64748b">High Risk</text><text x="20" y="86" font-size="38">3</text></g>
+    </g>
+    <g transform="translate(110 505)">
+      <rect width="670" height="420" rx="16" fill="#fff" stroke="#dce3eb"/>
+      <text x="30" y="50" font-size="30" font-weight="700">Revenue and profit</text>
+      <g transform="translate(82 100)" stroke="#e5eaf0" stroke-width="1">
+        <line x1="0" y1="250" x2="530" y2="250"/><line x1="0" y1="190" x2="530" y2="190"/><line x1="0" y1="130" x2="530" y2="130"/><line x1="0" y1="70" x2="530" y2="70"/><line x1="0" y1="10" x2="530" y2="10"/>
+      </g>
+      <g transform="translate(100 620)">
+        <g fill="#1474c8"><rect x="0" y="-205" width="26" height="205"/><rect x="66" y="-176" width="26" height="176"/><rect x="132" y="-125" width="26" height="125"/><rect x="198" y="-98" width="26" height="98"/><rect x="264" y="-147" width="26" height="147"/><rect x="330" y="-66" width="26" height="66"/><rect x="396" y="-82" width="26" height="82"/><rect x="462" y="-49" width="26" height="49"/></g>
+        <g fill="#85c9f5"><rect x="26" y="-92" width="22" height="92"/><rect x="92" y="-52" width="22" height="52"/><rect x="158" y="-38" width="22" height="38"/><rect x="224" y="-29" width="22" height="29"/><rect x="290" y="-42" width="22" height="42"/><rect x="356" y="-18" width="22" height="18"/><rect x="422" y="-25" width="22" height="25"/><rect x="488" y="-10" width="22" height="10"/></g>
+      </g>
+      <g fill="#64748b" font-size="14"><text x="93" y="650">Tech</text><text x="154" y="650">Finance</text><text x="224" y="650">Logistics</text><text x="289" y="650">Retail</text><text x="360" y="650">Energy</text><text x="423" y="650">Manufact.</text><text x="493" y="650">Telecom</text><text x="557" y="650">Goods</text></g>
+      <g font-size="16"><rect x="510" y="82" width="14" height="14" fill="#1474c8"/><text x="532" y="95">Revenue</text><rect x="510" y="108" width="14" height="14" fill="#85c9f5"/><text x="532" y="121">Profit</text></g>
+    </g>
+    <g transform="translate(820 505)">
+      <rect width="670" height="420" rx="16" fill="#fff" stroke="#dce3eb"/>
+      <text x="30" y="50" font-size="30" font-weight="700">Revenue mix</text>
+      <g transform="translate(150 70)">
+        <circle cx="180" cy="170" r="130" fill="none" stroke="#e7edf4" stroke-width="1"/>
+        <path d="M180 170 L180 40 A130 130 0 0 1 302 126 Z" fill="#3b82f6"/><path d="M180 170 L302 126 A130 130 0 0 1 308 199 Z" fill="#ef4444"/><path d="M180 170 L308 199 A130 130 0 0 1 271 266 Z" fill="#6366f1"/><path d="M180 170 L271 266 A130 130 0 0 1 199 299 Z" fill="#f59e0b"/><path d="M180 170 L199 299 A130 130 0 0 1 57 225 Z" fill="#10b981"/><path d="M180 170 L57 225 A130 130 0 0 1 62 91 Z" fill="#8b5cf6"/><path d="M180 170 L62 91 A130 130 0 0 1 180 40 Z" fill="#14b8a6"/>
+        <circle cx="180" cy="170" r="68" fill="#fff"/>
+        <g text-anchor="middle" font-size="15" font-weight="600" fill="#fff"><text x="245" y="84">20.6%</text><text x="300" y="164">4.55%</text><text x="272" y="230">4.98%</text><text x="204" y="286" fill="#1f2937">6.71%</text><text x="99" y="250" fill="#1f2937">12.6%</text><text x="58" y="160">14.7%</text><text x="115" y="74" fill="#1f2937">17.7%</text></g>
       </g>
     </g>
   </g>
