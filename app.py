@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
+import time
+from datetime import timedelta
+
 import pandas as pd
+import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st
 
@@ -20,6 +24,7 @@ from segment_forecasting_dashboard.forecasting import (
     filter_forecast,
     forecast_dataframe,
 )
+from segment_forecasting_dashboard.market_analysis import market_indicators, market_risk_briefing
 from segment_forecasting_dashboard.market_data import (
     WATCHLIST,
     MarketDataError,
@@ -51,7 +56,7 @@ if "segments" not in st.session_state:
     st.session_state.segments = default_segments()
 
 st.title("🌐 Live Data Intelligence & Segment Forecasting")
-st.caption("Live public market context paired with explainable segment scenarios and executive reporting")
+st.caption("Automatically refreshed public market data, transparent indicators, and explainable segment scenarios")
 
 with st.sidebar:
     st.header("Live market data")
@@ -62,9 +67,11 @@ with st.sidebar:
         format_func=lambda symbol: f"{WATCHLIST[symbol]} ({symbol})",
     )
     market_period = st.selectbox("History window", ["1mo", "3mo", "6mo", "1y", "2y"], index=2)
-    refresh_market = st.button("Refresh live data", use_container_width=True)
-    if refresh_market:
-        st.cache_data.clear()
+    auto_refresh = st.toggle("Automatically refresh", value=True)
+    refresh_minutes = st.select_slider("Refresh every", options=[1, 5, 15, 30], value=5, disabled=not auto_refresh)
+    if st.button("Refresh now", use_container_width=True):
+        st.session_state.market_refresh_nonce = time.time_ns()
+        st.rerun()
     st.divider()
     st.header("Segment forecast")
     scenario = st.slider("Scenario growth adjustment", -10.0, 20.0, 0.0, 0.5, format="%+.1f%%")
@@ -82,22 +89,31 @@ with st.sidebar:
         st.rerun()
 
 
-@st.cache_data(ttl=900, show_spinner=False)
-def load_market_data(symbols: tuple[str, ...], period: str) -> tuple[pd.DataFrame, str | None]:
-    """Cache live vendor responses briefly to keep reruns responsive."""
+@st.cache_data(ttl=3600, show_spinner=False)
+def load_market_data(
+    symbols: tuple[str, ...], period: str, refresh_bucket: int, refresh_nonce: int
+) -> tuple[pd.DataFrame, str | None]:
+    """Fetch one fresh vendor snapshot per selected refresh interval."""
+    del refresh_bucket, refresh_nonce  # cache-key inputs intentionally trigger scheduled refreshes
     try:
         return fetch_market_history(symbols, period), None
-    except MarketDataError as exc:
+    except (MarketDataError, ValueError) as exc:
         return pd.DataFrame(), str(exc)
 
 
-with st.spinner("Loading public market data…"):
-    history, market_error = load_market_data(tuple(market_symbols), market_period)
-snapshot = market_snapshot(history)
+@st.fragment(run_every=timedelta(minutes=refresh_minutes) if auto_refresh else None)
+def live_market_panel() -> None:
+    """Live fragment refreshes the data and all derived indicators on schedule."""
+    refresh_seconds = refresh_minutes * 60
+    refresh_bucket = int(time.time() // refresh_seconds)
+    refresh_nonce = st.session_state.get("market_refresh_nonce", 0)
+    with st.spinner("Loading public market data…"):
+        history, market_error = load_market_data(
+            tuple(market_symbols), market_period, refresh_bucket, refresh_nonce
+        )
+    snapshot = market_snapshot(history)
+    indicators = market_indicators(history)
 
-market_tab, segment_tab = st.tabs(["🌍 Live Market Intelligence", "📊 Segment Forecasting"])
-
-with market_tab:
     st.subheader("Market pulse")
     if market_error:
         st.warning(f"Live market data could not be loaded: {market_error}")
@@ -110,48 +126,62 @@ with market_tab:
         fetched_at = history.attrs.get("fetched_at")
         st.caption(
             f"Daily observations from Yahoo Finance · Retrieved {fetched_at or 'just now'} · "
-            "15-minute cache · Latest available market close, which may not be real-time."
+            f"Automatic refresh: every {refresh_minutes} minute(s) · Latest available close, not necessarily real-time."
         )
         metric_columns = st.columns(min(len(snapshot), 4))
         for column, (_, row) in zip(metric_columns, snapshot.iterrows(), strict=False):
             change = None if pd.isna(row["change_pct"]) else f"{row['change_pct']:+.2f}%"
-            column.metric(
-                row["instrument"],
-                f"{row['close']:,.2f}",
-                change,
-                delta_color="normal",
-            )
+            column.metric(row["instrument"], f"{row['close']:,.2f}", change)
 
-        left, right = st.columns([1.7, 1])
-        with left:
-            st.subheader("Price history")
-            st.plotly_chart(
-                px.line(
-                    history,
-                    x="date",
-                    y="close",
-                    color="instrument",
-                    labels={"date": "Date", "close": "Close", "instrument": "Instrument"},
-                    template="plotly_dark",
-                ).update_layout(height=430, margin=dict(l=10, r=10, t=25, b=10)),
-                use_container_width=True,
-            )
-        with right:
-            st.subheader("Latest market observations")
-            display_snapshot = snapshot[["instrument", "symbol", "date", "close", "change_pct"]].copy()
-            display_snapshot["date"] = display_snapshot["date"].dt.strftime("%Y-%m-%d")
-            st.dataframe(display_snapshot, use_container_width=True, hide_index=True)
-            st.download_button(
-                "Download market snapshot CSV",
-                display_snapshot.to_csv(index=False).encode("utf-8"),
-                file_name="live_market_snapshot.csv",
-                mime="text/csv",
-            )
+        st.subheader("Price history and rolling averages")
+        chart = go.Figure()
+        for _, group in indicators.groupby("symbol", sort=False):
+            instrument = group.iloc[-1]["instrument"]
+            chart.add_trace(go.Scatter(x=group["date"], y=group["close"], mode="lines", name=f"{instrument} close"))
+            chart.add_trace(go.Scatter(x=group["date"], y=group["sma_20"], mode="lines", line={"dash": "dot"}, name=f"{instrument} 20-day avg"))
+        chart.update_layout(height=450, hovermode="x unified", margin=dict(l=10, r=10, t=25, b=10))
+        st.plotly_chart(chart, use_container_width=True)
+
+        st.subheader("Recalculated market indicators")
+        latest_indicators = indicators.sort_values("date").groupby("symbol", sort=False).tail(1)
+        indicator_columns = [
+            "instrument", "symbol", "date", "close", "daily_return_pct", "sma_20",
+            "sma_50", "volatility_annualized_pct", "drawdown_pct",
+        ]
+        st.dataframe(latest_indicators[indicator_columns], use_container_width=True, hide_index=True)
+        st.caption("Volatility is historical, annualized realized volatility; moving averages and drawdowns describe the selected history window.")
+
+        st.subheader("Neutral market observations")
+        for note in market_risk_briefing(indicators):
+            st.markdown(f"- {note}")
+
+        export_left, export_right = st.columns(2)
+        export_left.download_button(
+            "Download market history CSV",
+            history.to_csv(index=False).encode("utf-8"),
+            file_name="market_history.csv",
+            mime="text/csv",
+        )
+        briefing = market_briefing_markdown(snapshot, fetched_at)
+        briefing += "\n\n## Descriptive Indicators\n\n" + "\n".join(
+            f"- {note}" for note in market_risk_briefing(indicators)
+        )
+        export_right.download_button(
+            "Download live market briefing",
+            briefing.encode("utf-8"),
+            file_name="live_market_briefing.md",
+            mime="text/markdown",
+        )
 
     st.caption(
-        "Market feed: Yahoo Finance chart endpoint. Data availability and delay depend on the provider; "
-        "this project is for analytics demonstration, not trading or investment advice."
+        "Source: Yahoo Finance chart endpoint. Data availability, licensing, and delay depend on the provider. "
+        "Indicators are educational and descriptive only; this app does not provide personalized financial advice or trade recommendations."
     )
+
+
+market_tab, segment_tab = st.tabs(["🌍 Live Market Intelligence", "📊 Segment Forecasting"])
+with market_tab:
+    live_market_panel()
 
 with segment_tab:
     st.markdown(
@@ -180,7 +210,6 @@ with segment_tab:
     tab_overview, tab_forecast, tab_advisory, tab_report = st.tabs(
         ["Overview", "Forecast table", "Advisory", "Executive report"]
     )
-
     with tab_overview:
         c1, c2 = st.columns(2)
         with c1:
@@ -189,7 +218,6 @@ with segment_tab:
         with c2:
             st.subheader("Revenue mix")
             st.plotly_chart(revenue_mix_chart(filtered), use_container_width=True)
-
         c3, c4 = st.columns(2)
         with c3:
             st.subheader("Growth trajectory")
@@ -197,61 +225,31 @@ with segment_tab:
         with c4:
             st.subheader("Risk distribution")
             st.plotly_chart(risk_distribution(filtered), use_container_width=True)
-
         st.subheader("Segment health radar")
         st.plotly_chart(health_radar_chart(filtered), use_container_width=True)
 
     with tab_forecast:
         display_columns = {
-            "segment": "Segment",
-            "period": "Period",
-            "revenue": "Revenue",
-            "costs": "Costs",
-            "profit": "Profit",
-            "scenario_growth": "Growth %",
-            "profit_margin": "Margin %",
-            "confidence": "Confidence",
-            "risk": "Risk",
-            "status": "Status",
-            "trend": "Trend",
-            "market_share": "Market Share",
-            "cac": "CAC",
-            "churn": "Churn",
-            "competitors": "Competitors",
+            "segment": "Segment", "period": "Period", "revenue": "Revenue", "costs": "Costs",
+            "profit": "Profit", "scenario_growth": "Growth %", "profit_margin": "Margin %",
+            "confidence": "Confidence", "risk": "Risk", "status": "Status", "trend": "Trend",
+            "market_share": "Market Share", "cac": "CAC", "churn": "Churn", "competitors": "Competitors",
         }
-        st.dataframe(
-            filtered[list(display_columns)].rename(columns=display_columns),
-            use_container_width=True,
-            hide_index=True,
-        )
-        st.download_button(
-            "Download forecast CSV",
-            export_csv(filtered),
-            file_name="segment_forecast.csv",
-            mime="text/csv",
-        )
+        st.dataframe(filtered[list(display_columns)].rename(columns=display_columns), use_container_width=True, hide_index=True)
+        st.download_button("Download forecast CSV", export_csv(filtered), file_name="segment_forecast.csv", mime="text/csv")
 
     with tab_advisory:
-        advisory = advisory_dataframe(filtered)
         st.subheader("Explainable segment advisory")
-        st.dataframe(advisory, use_container_width=True, hide_index=True)
-        st.caption(
-            "Advisory signals are deterministic rules derived from margin, growth, churn, competition, market share, and confidence."
-        )
+        st.dataframe(advisory_dataframe(filtered), use_container_width=True, hide_index=True)
+        st.caption("Rule-based signals on illustrative segment fixtures; not financial advice.")
 
     with tab_report:
         report = build_markdown_report(filtered, scenario=scenario)
-        report += "\n\n" + market_briefing_markdown(snapshot, history.attrs.get("fetched_at"))
         st.markdown(report)
         st.download_button(
-            "Download executive report",
-            report.encode("utf-8"),
-            file_name="executive_intelligence_report.md",
-            mime="text/markdown",
+            "Download segment forecast report", report.encode("utf-8"),
+            file_name="segment_forecast_report.md", mime="text/markdown",
         )
 
 st.divider()
-st.caption(
-    "Live market observations are fetched from Yahoo Finance and cached for 15 minutes. "
-    "Segment economics remain static illustrative fixtures; neither dataset is financial advice."
-)
+st.caption("Market indicators refresh on the selected schedule while this app session remains open. Segment economics remain static illustrative fixtures.")
