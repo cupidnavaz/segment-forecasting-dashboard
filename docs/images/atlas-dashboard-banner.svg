@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" role="img" aria-labelledby="title description">
+  <title id="title">Segment Forecasting Dashboard</title>
+  <desc id="description">A market chart line and scenario path on a dark ink-blue atlas grid.</desc>
+  <defs>
+    <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#32495f"/>
+      <stop offset="1" stop-color="#263a50"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d0a64f"/>
+      <stop offset="1" stop-color="#e7c77f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="360" rx="24" fill="url(#wash)"/>
+  <g fill="none" stroke="#f3eee3" stroke-opacity=".09">
+    <path d="M56 60H1224M56 112H1224M56 164H1224M56 216H1224M56 268H1224M56 320H1224"/>
+    <path d="M56 44V320M168 44V320M280 44V320M392 44V320M504 44V320M616 44V320M728 44V320M840 44V320M952 44V320M1064 44V320M1176 44V320"/>
+  </g>
+  <path d="M600 271C667 258 680 226 735 235S817 180 866 193 943 143 996 155 1085 99 1147 114 1194 83 1224 73"
+        fill="none" stroke="#9bb6c3" stroke-opacity=".72" stroke-width="2.5"/>
+  <path d="M600 293C664 287 704 263 754 269S836 239 890 244 973 206 1021 217 1099 180 1150 190 1200 161 1224 151"
+        fill="none" stroke="url(#line)" stroke-linecap="round" stroke-width="3.5"/>
+  <path d="M600 293C664 287 704 263 754 269S836 239 890 244 973 206 1021 217 1099 180 1150 190 1200 161 1224 151V320H600Z"
+        fill="#d0a64f" fill-opacity=".08"/>
+  <g stroke="#d0a64f" stroke-opacity=".75" stroke-width="1">
+    <path d="M1019 44V320"/>
+    <path d="M1009 155H1029"/>
+  </g>
+  <circle cx="1019" cy="217" r="6" fill="#d0a64f" stroke="#263a50" stroke-width="3"/>
+  <g font-family="IBM Plex Sans, Segoe UI, sans-serif">
+    <text x="64" y="106" fill="#f3eee3" font-size="15" font-weight="600" letter-spacing="3">STATISTICAL ATLAS</text>
+    <text x="64" y="166" fill="#fffdf8" font-size="39" font-weight="600" letter-spacing="-1">Market context.</text>
+    <text x="64" y="211" fill="#fffdf8" font-size="39" font-weight="600" letter-spacing="-1">Segment scenarios.</text>
+    <text x="66" y="252" fill="#d7dfe3" font-size="16">Interactive analysis, transparent assumptions, export-ready insight.</text>
+    <rect x="64" y="282" width="172" height="31" rx="15.5" fill="#f3eee3" fill-opacity=".09" stroke="#a8b8c2" stroke-opacity=".45"/>
+    <circle cx="81" cy="297.5" r="4" fill="#d0a64f"/>
+    <text x="94" y="302" fill="#f3eee3" font-size="11" font-weight="600" letter-spacing="1.2">PUBLIC DAILY DATA</text>
+    <rect x="246" y="282" width="202" height="31" rx="15.5" fill="#f3eee3" fill-opacity=".09" stroke="#a8b8c2" stroke-opacity=".45"/>
+    <circle cx="263" cy="297.5" r="4" fill="#d28f7e"/>
+    <text x="276" y="302" fill="#f3eee3" font-size="11" font-weight="600" letter-spacing="1.2">ILLUSTRATIVE FIXTURES</text>
+  </g>
+</svg>

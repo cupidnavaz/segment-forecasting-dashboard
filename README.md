@@ -1,119 +1,211 @@
-# Segment Forecasting Dashboard
+<p align="center">
+  <img src="docs/images/atlas-mark.svg" width="72" height="72" alt="Segment Forecasting mark">
+</p>
 
-**A modern, interactive workspace for daily market context, transparent segment scenarios, and executive-ready exports.**
+<h1 align="center">Segment Forecasting Dashboard</h1>
 
-The Streamlit app pairs automatically refreshed public market history with descriptive indicators and a separate, explainable segment-scenario experiment. The segment figures are static illustrative fixtures. Market-proxy adjustments can change scenario growth only; they do not update revenue, costs, margins, churn, or confidence and are not measured relationships or predictions.
+<p align="center">
+  An interactive market-intelligence workspace for daily context, transparent segment scenarios,
+  and executive-ready exports.
+</p>
 
-[![CI](https://github.com/cupidnavaz/segment-forecasting-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/cupidnavaz/segment-forecasting-dashboard/actions/workflows/ci.yml)
-[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](#requirements)
-[![License: MIT](https://img.shields.io/badge/License-MIT-7C3AED.svg)](LICENSE)
+<p align="center">
+  <a href="https://github.com/cupidnavaz/segment-forecasting-dashboard/actions/workflows/ci.yml">
+    <img src="https://github.com/cupidnavaz/segment-forecasting-dashboard/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI">
+  </a>
+  <img src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white" alt="Python 3.11 or newer">
+  <img src="https://img.shields.io/badge/Streamlit-interactive_dashboard-9a4939?logo=streamlit&logoColor=white" alt="Streamlit">
+  <img src="https://img.shields.io/badge/Plotly-interactive_charts-3d6c83?logo=plotly&logoColor=white" alt="Plotly">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-d0a64f" alt="MIT License"></a>
+</p>
 
-> **Start the interactive dashboard:** `streamlit run app.py`
-> README tables and diagrams explain the app; the widgets, KPI cards, filters, and charts are interactive in the running dashboard.
+<p align="center">
+  <a href="#quick-start">Launch locally</a> ·
+  <a href="#product-tour">Explore features</a> ·
+  <a href="#data-and-methodology">Review methodology</a> ·
+  <a href="#quality-checks">Quality checks</a>
+</p>
 
-## Contents
+![Statistical Atlas dashboard visual](docs/images/atlas-dashboard-banner.svg)
 
-- [Dashboard at a glance](#dashboard-at-a-glance)
-- [Interactive controls and KPIs](#interactive-controls-and-kpis)
-- [Charts and analysis](#charts-and-analysis)
-- [Automated refresh and market data](#automated-refresh-and-market-data)
-- [Scenario methodology](#scenario-methodology)
-- [Reports and exports](#reports-and-exports)
+The dashboard combines **public daily market history** with transparent descriptive indicators and a separate **illustrative segment dataset**. Interactive controls recalculate the visible analysis and bounded scenario overlay; the underlying fixture fundamentals remain unchanged. The application is built with Streamlit, pandas, and Plotly.
+
+> **Scope and data boundary:** Market observations can be delayed, incomplete, or unavailable and are not guaranteed real-time. Segment economics are static demo fixtures—not company financial statements. Market-proxy assignments are illustrative assumptions, not measured relationships, predictions, or investment advice.
+
+## Explore this guide
+
+- [Product tour](#product-tour)
+- [Interactive controls](#interactive-controls)
+- [Charts, tables, and indicators](#charts-tables-and-indicators)
+- [Data and methodology](#data-and-methodology)
+- [Visual system and interaction design](#visual-system-and-interaction-design)
+- [Exports and reports](#exports-and-reports)
 - [Quick start](#quick-start)
-- [Project structure](#project-structure)
-- [Tests and quality checks](#tests-and-quality-checks)
-- [Data limitations and disclaimer](#data-limitations-and-disclaimer)
+- [Project map](#project-map)
+- [Quality checks](#quality-checks)
+- [Limitations and responsible use](#limitations-and-responsible-use)
 
-## Dashboard at a glance
+## Product tour
 
-Choose a workspace from the sidebar. Each view retains the shared market and scenario controls, so changing a filter updates the relevant dashboard results and exports.
-
-| Workspace | What it shows |
+| Workspace | What you can do |
 |---|---|
-| **Market overview** | Latest available closes and daily changes, interactive instrument comparison, historical risk chart, latest indicator table, and descriptive observations. |
-| **Instrument analysis** | A selected instrument’s close history, optional 20- and 50-observation averages, current-window KPIs, and downloadable observation history. |
-| **Segment scenarios** | Illustrative fixture KPIs, revenue/profit and mix charts, adjusted growth and risk views, a segment-health comparison, forecast table, and explainable advisory signals. |
-| **Reports** | A combined market briefing and executive scenario report, with Markdown and CSV downloads. |
+| **Market overview** | Scan selected instruments, compare indexed price history, inspect historical risk, read the latest indicator table, and export observations. |
+| **Instrument analysis** | Focus on one instrument, toggle its 20- and 50-observation averages, review close/change/average/drawdown KPIs, and download its history. |
+| **Segment scenarios** | Adjust scenario assumptions, filter and sort segment fixtures, compare analytical charts, review the forecast table, and inspect explainable advisory signals. |
+| **Reports and exports** | Preview a combined executive report and download it with the current market snapshot and segment filters. |
 
-The interface uses a restrained “Statistical Atlas” visual language: warm chart-stock surfaces, ink-blue navigation, precise chart annotations, and responsive metric/chart cards. Cards group related information rather than decorating it; source freshness and illustrative-data caveats remain visible.
+```mermaid
+flowchart LR
+    A["Market overview<br/>Daily public history"] --> B["Instrument analysis<br/>Close, averages, risk"]
+    A --> C["Segment scenarios<br/>Illustrative fixture model"]
+    C --> D["Reports and exports<br/>CSV + Markdown"]
+    B --> D
+    classDef market fill:#e7eef0,stroke:#3d6c83,color:#263a50
+    classDef scenario fill:#f4eddd,stroke:#d0a64f,color:#263a50
+    class A,B market
+    class C,D scenario
+```
 
-## Interactive controls and KPIs
+<details>
+<summary><strong>Market overview — pulse cards, history, and risk</strong></summary>
 
-### Market widgets
+- **Market pulse cards** show the latest available close and prior-observation change for up to four selected instruments.
+- **Indexed comparison** rebases each selected series to 100 at its first observation so different price scales can be compared.
+- **Price and averages** focuses the chart on one instrument and can overlay descriptive 20- and 50-observation simple moving averages.
+- **Historical risk profile** compares annualized historical volatility with drawdown from the high in the selected window.
+- **Latest indicator readings** provide a compact table of close, daily change, rolling averages, volatility, and drawdown.
+- **Descriptive observations** explain the indicator readings in neutral language; they are not trade instructions.
 
-| Widget | Interaction |
+</details>
+
+<details>
+<summary><strong>Instrument analysis — focused inspection</strong></summary>
+
+Choose any selected instrument with usable observations. Four KPI cards summarize the latest close, daily change, 20-observation average, and window drawdown. The interactive history chart can show or hide rolling averages; the observation table and CSV download retain the full derived history for that instrument.
+
+</details>
+
+<details>
+<summary><strong>Segment scenarios — controls, KPIs, and analytical views</strong></summary>
+
+The scenario workspace starts with a clear illustrative-data notice. Its KPI cards summarize filtered fixture revenue, fixture profit, adjusted scenario growth, fixture confidence, and the number of high-risk fixtures.
+
+The **Overview** tab contains:
+
+1. A grouped **revenue and profit bar chart** by segment.
+2. A **revenue-mix doughnut chart**.
+3. A **market-adjusted growth trajectory** with interactive segment traces.
+4. A **risk-distribution bar chart** for low, medium, and high fixture classifications.
+5. A **segment-health radar chart** comparing up to five leading filtered segments.
+
+The **Forecast table** exposes proxy mapping, proxy return and adjustment, fixture revenue/cost/profit, adjusted growth, margin, confidence, and other segment inputs. The **Advisory** tab shows rule-based health scores, impacts, gaps, and priority-action counts.
+
+</details>
+
+<details>
+<summary><strong>Reports — reproducible snapshots</strong></summary>
+
+The report view combines the filtered segment summary with source-attributed latest market context. Download a Markdown executive report or the filtered market-linked segment forecast CSV. Exports follow the current widget values; report copy preserves the illustrative-data and source limitations.
+
+</details>
+
+## Interactive controls
+
+Controls live in the sidebar and update the applicable charts, metrics, tables, and exports.
+
+| Control | Effect |
 |---|---|
-| **Instruments** | Select one or more symbols from the curated watchlist. |
-| **History window** | Choose `1mo`, `3mo`, `6mo`, `1y`, or `2y` of daily observations. |
-| **Auto-refresh** | Re-fetch the selected history while the Streamlit browser session is active. |
-| **Refresh interval** | Set the automatic refresh cadence to 1, 5, 15, or 30 minutes. |
-| **Chart view** | Switch between normalized indexed comparison and one instrument’s close with optional rolling averages. |
+| **Workspace** | Switch between Market overview, Instrument analysis, Segment scenarios, and Reports. |
+| **Instruments** | Select from S&P 500, NASDAQ Composite, Dow Jones Industrial Average, crude oil futures, gold futures, Bitcoin, and Ethereum. |
+| **History window** | Choose 1 month, 3 months, 6 months, 1 year, or 2 years of daily observations. |
+| **Auto-refresh** | Re-fetch and recalculate while the Streamlit browser session remains active. |
+| **Refresh interval** | Set the session refresh cadence to 1, 5, 15, or 30 minutes. |
 | **Refresh data** | Request a fresh snapshot immediately. |
-| **Animate chart transitions** | Enable or disable Plotly transitions. Reduced-motion preferences are also honored in the stylesheet. |
+| **Chart view** | Switch between indexed comparison and one instrument’s close/average view. |
+| **Scenario adjustment** | Add a user-selected growth adjustment in percentage points. |
+| **Proxy sensitivity, lookback, and cap** | Tune the illustrative market-linked scenario overlay. |
+| **Risk, status, trend, and search** | Filter rows by classification, fixture status, growth trend, segment, or period. |
+| **Sort and direction** | Reorder filtered scenario rows by growth, revenue, profit, confidence, margin, or churn. |
+| **Reset segment fixtures** | Restore the built-in illustrative dataset for the current browser session. |
+| **Animate chart transitions** | Enable/disable Plotly transitions; reduced-motion preferences are respected in the stylesheet. |
 
-Market pulse cards show latest available closes and previous-observation changes for up to four selected instruments. Instrument-analysis KPI cards show the latest close, daily change, 20-observation average, and drawdown for the active selection.
+### Market data automation
 
-### Segment widgets
+The app fetches daily history from the Yahoo Finance chart endpoint for the selected watchlist instruments. A Streamlit fragment refreshes the market view and derived scenarios at the chosen cadence while the browser session is active. Results are briefly cached; a manual refresh is also available.
 
-Scenario controls are available in the sidebar:
+Failures are surfaced: unavailable symbols are identified when other symbols load; if the full selection fails, the dashboard shows a recoverable provider message. This is **session-driven refresh**, not a background scheduler or a guaranteed real-time feed.
 
-- **Scenario adjustment:** add a user-selected growth adjustment in percentage points.
-- **Proxy sensitivity, lookback, and adjustment cap:** tune the illustrative market-linked growth experiment.
-- **Risk, status, and trend:** filter segment rows.
-- **Search:** find a segment name or forecast period.
-- **Sort field and direction:** reorder the filtered view.
-- **Reset segment fixtures:** restore the built-in illustrative dataset for the current session.
+## Charts, tables, and indicators
 
-The segment KPI cards summarize filtered fixture revenue, fixture profit, adjusted scenario growth, fixture confidence, and the number of high-risk fixtures. These values update with the filters and scenario inputs; they are not reported company results.
+Charts are built with Plotly and support hover inspection, legends, zoom, and pan where applicable. Shared chart styling uses a synchronized crosshair, consistent axes, and restrained transition motion.
 
-## Charts and analysis
-
-Plotly charts support hover inspection, legends, zoom, and pan where applicable. Chart annotations and labels distinguish historical observations from scenario outputs.
-
-| View | Visualizations |
+| Visualization | Data represented |
 |---|---|
-| **Market overview** | Indexed close comparison; focused close history with optional 20-/50-observation averages; annualized historical volatility and selected-window drawdown. |
-| **Instrument analysis** | Focused daily close and moving-average chart plus a sortable-by-date observation table. |
-| **Segment scenarios** | Grouped fixture revenue/profit bars; revenue-mix doughnut; market-adjusted growth trajectory; risk distribution; and a health-comparison radar for up to five leading segments. |
+| Indexed market comparison | Relative close movement from a common starting value of 100. |
+| Instrument history | Daily close and optional 20-/50-observation averages. |
+| Market risk profile | Latest 20-observation annualized volatility and selected-window drawdown. |
+| Revenue and profit bars | Illustrative fixture revenue and profit by segment. |
+| Revenue-mix doughnut | Each visible segment’s share of filtered fixture revenue. |
+| Growth trajectory | Scenario-adjusted fixture growth applied as an illustrative trajectory. |
+| Risk distribution | Counts of visible low-, medium-, and high-risk fixtures. |
+| Health radar | Bounded comparisons of fixture margin, market share, confidence, churn, and competition. |
 
-Market indicators include daily percentage return, 20- and 50-observation simple moving averages, 20-observation annualized historical volatility, and drawdown from the selected-window high. Rule-based observations describe those readings; they do not issue trade signals.
+Market indicators include daily percentage return, 20-/50-observation simple moving averages, 20-observation annualized historical volatility, and drawdown from the selected-window high. With insufficient observations, values remain unavailable rather than being invented.
 
-## Automated refresh and market data
+## Data and methodology
 
-- **Provider:** Yahoo Finance chart endpoint, using daily intervals for a curated list of indices, commodities, and crypto assets.
-- **Symbols:** S&P 500 (`^GSPC`), NASDAQ Composite (`^IXIC`), Dow Jones Industrial Average (`^DJI`), crude oil futures (`CL=F`), gold futures (`GC=F`), Bitcoin (`BTC-USD`), and Ethereum (`ETH-USD`).
-- **Refresh cadence:** the Streamlit fragment refreshes the view at the selected interval while the app session remains connected. A manual refresh is also available.
-- **Resilience:** individual symbol failures are surfaced while available instruments can still load; if no selected market history is available, the app displays a recoverable provider error.
-- **Freshness:** retrieval time is shown when supplied by the data fetch. Daily observations are not guaranteed real-time quotes.
-- **Caching:** market fetches use Streamlit’s data cache and a refresh-bucket key to allow a new request on the configured cadence.
+### Bounded market-linked scenario
 
-This is a session-driven dashboard refresh, not a scheduled background job or guaranteed market feed. Provider delays, outages, terms, and rate limits may change.
-
-## Scenario methodology
-
-The dashboard combines deterministic calculations on the built-in segment fixtures with an optional, bounded market-proxy adjustment. The user scenario and proxy adjustment affect `scenario_growth` only:
+The market overlay adjusts **scenario growth only**:
 
 ```text
 market_adjustment_pp =
-    clip(proxy_return_over_lookback × sensitivity, -maximum_adjustment, +maximum_adjustment)
+    clip(proxy_return_over_lookback * sensitivity, -maximum_adjustment, +maximum_adjustment)
 
-scenario_growth = base_growth + user_scenario + market_adjustment_pp
+scenario_growth =
+    base_growth + user_scenario + market_adjustment_pp
 ```
 
-Proxy mappings are illustrative assumptions—not empirical sector betas. Missing proxy history contributes no proxy adjustment and is marked in the scenario data. The underlying fixture fundamentals are not recalculated from market movements.
+Proxy mappings are illustrative and configurable in the application code; they are not empirically estimated sector betas. Missing proxy history produces no proxy adjustment. Market movement does not change fixture revenue, costs, profit margin, churn, confidence, market share, or competition.
 
-The baseline profit, margin, growth, risk, confidence, trend, and proxy-adjustment rules are documented in [Forecasting Methodology](docs/forecasting-methodology.md). Segment fields and derived values are described in the [Data Model](docs/data-model.md), and implementation boundaries are covered in [Architecture](docs/architecture.md).
+### Forecast calculations
 
-## Reports and exports
+The deterministic engine calculates:
 
-Download actions are available from the dashboard:
+```text
+profit       = revenue - costs
+profit_margin = profit / revenue * 100
+growth       = profit_margin * 0.8
+             + market_share * 0.3
+             + units_sold / 15
+             - churn * 0.6
+confidence   = clamp(round(60 + revenue / 40 + units_sold / 10 - churn * 1.5), 55, 98)
+```
 
-- **Market history CSV** for the selected instruments.
-- **Instrument history CSV** for the focused symbol.
-- **Filtered market-linked forecast CSV** from the scenario table or Reports view.
-- **Combined executive Markdown report** with the filtered fixture summary and source-attributed latest market context.
+Growth is rounded to one decimal place. Risk uses explicit fixture overrides when present; otherwise it follows the documented margin, churn, and competition thresholds. Trend is derived from growth. See [Forecasting Methodology](docs/forecasting-methodology.md) and [Data Model](docs/data-model.md) for field definitions and rules.
 
-Exports use the active filters and scenario settings. They retain the demo/illustrative framing in report text and field labels.
+## Visual system and interaction design
+
+The interface uses the **Statistical Atlas** visual language: warm chart-stock surfaces, disciplined ink-blue navigation, precise chart annotation, and a restrained editorial type pairing.
+
+| Token | Color | Use |
+|---|---|---|
+| Atlas ink | `#263A50` | Navigation, primary titles, chart labels. |
+| Chart paper | `#F3EEE3` | Main canvas and light surfaces. |
+| Panel | `#FBF8F1` | KPI and chart containers. |
+| Terracotta | `#9A4939` | Selected states, risk emphasis, chart series. |
+| Atlas blue | `#3D6C83` | Data series and informative states. |
+| Field green | `#5F7656` | Positive/low-risk states. |
+| Brass | `#D0A64F` | Focus ring, chart marker, restrained highlight. |
+
+The custom atlas mark pairs a rising line with a crosshair point. Status badges distinguish daily-data readiness, partial/unavailable feeds, descriptive history, and illustrative scenarios. Responsive Streamlit layouts, visible keyboard focus, chart labels, and reduced-motion handling support comfortable scanning across screen sizes.
+
+## Exports and reports
+
+- **Market history CSV** — selected instruments and raw observations.
+- **Instrument history CSV** — one selected symbol’s derived history.
+- **Filtered forecast CSV** — current market-linked scenario rows and active filters.
+- **Combined executive Markdown report** — filtered segment summary plus source-attributed market snapshot.
 
 ## Quick start
 
@@ -134,7 +226,7 @@ python -m pip install -e ".[dev]"
 streamlit run app.py
 ```
 
-If PowerShell blocks activation, use the Python executable directly:
+If PowerShell blocks activation:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -e ".[dev]"
@@ -153,53 +245,53 @@ python -m pip install -e ".[dev]"
 streamlit run app.py
 ```
 
-After launch, open the local URL printed by Streamlit. Select instruments and a history window in the sidebar, then leave **Auto-refresh** enabled to refresh the live market context while the browser session remains active. To start the same app from an installed environment, use `segment-dashboard`.
+Open the local URL printed by Streamlit. The installed console command `segment-dashboard` starts the same application.
 
-## Project structure
+## Project map
 
 ```text
 .
-├── app.py
-├── styles.css
-├── pyproject.toml
-├── src/
-│   └── segment_forecasting_dashboard/
-│       ├── analytics.py             # explainable fixture advisory signals
-│       ├── charts.py                # reusable Plotly figures
-│       ├── cli.py                   # installed dashboard launcher
-│       ├── data.py                  # canonical illustrative segment fixtures
-│       ├── forecasting.py           # deterministic calculations and filters
-│       ├── market_analysis.py       # descriptive market indicators
-│       ├── market_data.py           # Yahoo Finance fetch and snapshot helpers
-│       ├── market_forecasting.py    # bounded proxy-linked scenario experiment
-│       └── reporting.py             # Markdown and CSV exports
+├── .github/workflows/ci.yml          # automated tests on pushes and pull requests
+├── app.py                            # Streamlit layout, controls, state, and refresh
+├── styles.css                        # responsive Statistical Atlas interface
 ├── docs/
+│   ├── images/                       # atlas mark and README visual
 │   ├── architecture.md
 │   ├── data-model.md
 │   ├── forecasting-methodology.md
 │   ├── live-market-linked-forecast.md
 │   ├── operations.md
 │   └── release-checklist.md
-└── tests/
+├── original-source/                  # retained source-lineage reference
+├── src/segment_forecasting_dashboard/
+│   ├── analytics.py                  # explainable fixture advisory signals
+│   ├── charts.py                     # reusable Plotly figure builders
+│   ├── cli.py                        # installed dashboard launcher
+│   ├── data.py                       # canonical illustrative fixtures/watchlist
+│   ├── forecasting.py                # formulas, filters, and executive summary
+│   ├── market_analysis.py            # descriptive historical indicators
+│   ├── market_data.py                # public history and snapshot helpers
+│   ├── market_forecasting.py         # bounded proxy-linked scenario calculation
+│   └── reporting.py                  # CSV and Markdown exports
+└── tests/                            # data, analytics, charts, forecasts, reports
 ```
 
-The UI, data fetching, calculations, chart builders, and reporting helpers are separated so the deterministic forecast logic can be tested independently from Streamlit. See [Architecture](docs/architecture.md) for module responsibilities and extension points.
+## Quality checks
 
-## Tests and quality checks
-
-Install the development extras with `python -m pip install -e ".[dev]"`, then run:
+Install the development dependencies and run the suite locally:
 
 ```bash
-pytest
-ruff check .
+python -m pip install -e ".[dev]"
+python -m pytest -q
+ruff check app.py
 ```
 
-The tests cover market-data parsing and snapshots, descriptive market indicators, forecast and scenario calculations, chart generation, advisory logic, and reporting/export behavior.
+GitHub Actions runs the automated test suite on Python 3.11, 3.12, and 3.13 for pushes and pull requests. Tests cover market-response parsing and snapshots, descriptive indicators, forecast and proxy calculations, charts, advisory rules, and report/export behavior.
 
-## Data limitations and disclaimer
+## Limitations and responsible use
 
-This project is for general educational market context and descriptive analytics. It does **not** provide personalized financial, investment, tax, or legal advice, and it does not recommend buying, selling, or holding any security. It should not be used as the sole basis for an investment decision.
+This project provides general educational market context and descriptive analytics. It does **not** provide personalized financial, investment, tax, or legal advice, and does not recommend buying, selling, or holding securities.
 
-Market history may be delayed, incomplete, unavailable, or incorrect. Historical returns, averages, volatility, and drawdowns are descriptive—not predictions. Segment economics are static demo fixtures, not live company financial statements. Market-proxy mappings and scenario adjustments are illustrative and do not establish causality or forecast company performance. Past performance does not guarantee future results.
+Market history may be delayed, incomplete, unavailable, or incorrect. Historical returns, averages, volatility, and drawdowns are descriptive—not predictions. Segment economics are static demo fixtures, not verified company financial statements. Market proxies and scenario adjustments do not establish causality or forecast company performance. Past performance does not guarantee future results.
 
 For production or commercial use, select a properly licensed market-data provider and comply with its terms. See [SECURITY.md](SECURITY.md) for vulnerability reporting and [LICENSE](LICENSE) for license terms.

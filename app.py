@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import time
 from datetime import timedelta
+from html import escape
 from pathlib import Path
 
 import pandas as pd
@@ -35,13 +36,40 @@ from segment_forecasting_dashboard.reporting import build_markdown_report, expor
 
 st.set_page_config(
     page_title="Market Intelligence | Segment Forecasting",
-    page_icon="📊",
+    page_icon=":material/query_stats:",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 styles = Path(__file__).with_name("styles.css").read_text(encoding="utf-8")
 st.markdown(f"<style>{styles}</style>", unsafe_allow_html=True)
+
+_PAGE_ICONS = {
+    "market": (
+        '<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">'
+        '<path d="M8 29V11m0 18h24M11 24l6-7 5 5 8-11" />'
+        '<circle cx="30" cy="11" r="2" />'
+        "</svg>"
+    ),
+    "instrument": (
+        '<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">'
+        '<circle cx="18" cy="18" r="9" />'
+        '<path d="m25 25 7 7M12 19h4l3-6 4 11 3-5h3" />'
+        "</svg>"
+    ),
+    "scenario": (
+        '<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">'
+        '<path d="M8 31V9m0 22h24M13 26l6-6 5 3 8-11" />'
+        '<path d="M13 16v10m6-14v8m5 1v6m8-16v10" />'
+        "</svg>"
+    ),
+    "report": (
+        '<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">'
+        '<path d="M12 7h11l7 7v19H12z" />'
+        '<path d="M23 7v8h7M17 21h8m-8 5h8" />'
+        "</svg>"
+    ),
+}
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -62,6 +90,29 @@ def _format_number(value: object, *, decimals: int = 2) -> str:
     return f"{float(value):,.{decimals}f}"
 
 
+def _render_page_heading(
+    title: str, description: str, status: str, tone: str, icon: str
+) -> None:
+    st.markdown(
+        f"""
+        <header class="atlas-page-heading">
+            <div class="atlas-page-leading">
+                <span class="atlas-page-icon">{_PAGE_ICONS[icon]}</span>
+                <div class="atlas-page-copy">
+                    <h1>{escape(title)}</h1>
+                    <p>{escape(description)}</p>
+                </div>
+            </div>
+            <span class="atlas-badge atlas-badge--{escape(tone)}" role="status">
+                <span class="atlas-badge-dot" aria-hidden="true"></span>
+                {escape(status)}
+            </span>
+        </header>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def _chart_motion(figure):
     if not st.session_state.get("animate_chart_transitions", True):
         figure.update_layout(transition={"duration": 0})
@@ -77,16 +128,24 @@ def _render_market_overview(
     period: str,
     refresh_minutes: int,
 ) -> None:
-    st.title("Market overview")
     fetched_at = history.attrs.get("fetched_at")
     if fetched_at:
         retrieved = pd.to_datetime(fetched_at, utc=True).strftime("%b %d, %Y · %H:%M UTC")
-        st.caption(
+        description = (
             f"Yahoo Finance daily history · Retrieved {retrieved} · "
-            f"Refresh cadence {refresh_minutes} min · Latest close, not necessarily real-time"
+            f"Refresh every {refresh_minutes} min · Latest close, not a real-time quote."
         )
+        status, tone = "DAILY DATA READY", "success"
     else:
-        st.caption("Live market context, with the source and freshness kept in view.")
+        description = "Compare public daily market history with source and freshness kept in view."
+        status, tone = "AWAITING DATA", "neutral"
+    if error:
+        status, tone = "FEED UNAVAILABLE", "danger"
+    elif history.attrs.get("unavailable"):
+        status, tone = "PARTIAL DATA", "warning"
+    elif snapshot.empty:
+        status, tone = "NO INSTRUMENTS", "neutral"
+    _render_page_heading("Market overview", description, status, tone, "market")
 
     if error:
         st.warning(f"Live market data is unavailable: {error}. Use “Refresh data” to try again.")
@@ -246,7 +305,16 @@ def _render_instrument_analysis(
     symbols: tuple[str, ...],
     period: str,
 ) -> None:
-    st.title("Instrument analysis")
+    _render_page_heading(
+        "Instrument analysis",
+        (
+            "Inspect daily closes, rolling averages, volatility, and drawdown "
+            "for a selected instrument."
+        ),
+        "DESCRIPTIVE HISTORY",
+        "info",
+        "instrument",
+    )
     available = [symbol for symbol in symbols if symbol in set(indicators["symbol"])]
     if not available:
         st.info("Choose an instrument in the sidebar with available history.")
@@ -337,9 +405,16 @@ def _render_segment_scenarios(
     adjustment_cap: float,
     lookback: int,
 ) -> None:
-    st.title("Segment scenarios")
+    _render_page_heading(
+        "Segment scenarios",
+        "Compare illustrative segment fixtures with a bounded, configurable market-proxy overlay.",
+        "ILLUSTRATIVE MODEL",
+        "warning",
+        "scenario",
+    )
     st.markdown(
         '<div class="atlas-callout">'
+        '<span class="atlas-inline-badge">FIXTURE DATA</span> '
         "<strong>Illustrative scenario, not a company forecast.</strong> "
         "Segment economics are static demo fixtures. A bounded proxy adjustment changes "
         "scenario growth only; "
@@ -466,7 +541,16 @@ def _render_reports(
     snapshot: pd.DataFrame,
     history: pd.DataFrame,
 ) -> None:
-    st.title("Reports and exports")
+    _render_page_heading(
+        "Reports and exports",
+        (
+            "Generate a source-attributed snapshot from the current market selection "
+            "and scenario filters."
+        ),
+        "CURRENT FILTERS",
+        "info",
+        "report",
+    )
     report = build_markdown_report(filtered, scenario=scenario)
     report += "\n\n" + market_briefing_markdown(snapshot, history.attrs.get("fetched_at"))
     st.download_button(
@@ -487,7 +571,26 @@ def _render_reports(
 
 with st.sidebar:
     st.markdown(
-        '<div class="atlas-brand">Segment Forecasting<span>Market intelligence</span></div>',
+        """
+        <div class="atlas-brand">
+            <svg class="atlas-brand-mark" viewBox="0 0 40 40" role="img"
+                 aria-labelledby="atlas-logo-title">
+                <title id="atlas-logo-title">Segment Forecasting mark</title>
+                <rect x="1" y="1" width="38" height="38" rx="11"
+                      fill="#32495f" stroke="#718291" />
+                <path d="M9 28.5V22l6-5 5 5.5 10-12"
+                      fill="none" stroke="#f3eee3" stroke-linecap="round"
+                      stroke-linejoin="round" stroke-width="2.4" />
+                <path d="M8 31h24" stroke="#d0a64f" stroke-linecap="round"
+                      stroke-width="2" />
+                <circle cx="30" cy="10.5" r="2.6" fill="#d0a64f" />
+            </svg>
+            <span class="atlas-brand-copy">
+                <strong>Segment Forecasting</strong>
+                <span>MARKET INTELLIGENCE</span>
+            </span>
+        </div>
+        """,
         unsafe_allow_html=True,
     )
     st.divider()

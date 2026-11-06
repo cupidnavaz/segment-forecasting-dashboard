@@ -18,7 +18,8 @@ Streamlit UI (app.py)
 
 ### `data.py`
 
-Owns the canonical source dataset and static ticker fixtures.
+Owns the canonical illustrative segment dataset. Market instruments and public
+daily history are handled separately by `market_data.py`.
 
 ### `forecasting.py`
 
@@ -35,6 +36,21 @@ Contains deterministic business calculations:
 - executive summary
 
 This module does not import Streamlit.
+
+### `market_data.py`
+
+Fetches daily observations from the Yahoo Finance chart endpoint for the curated
+watchlist, records per-symbol availability, and builds latest-close snapshots.
+
+### `market_analysis.py`
+
+Calculates descriptive returns, moving averages, historical volatility, and
+selected-window drawdowns from fetched observations.
+
+### `market_forecasting.py`
+
+Combines the deterministic segment fixture forecast with an optional bounded,
+illustrative market-proxy adjustment to scenario growth only.
 
 ### `analytics.py`
 

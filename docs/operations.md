@@ -34,7 +34,14 @@ Future external integrations should document each variable in this file and prov
 
 ## Data limitations
 
-The included segment values and market ticker values are inherited from the supplied source. They are demonstration fixtures, not a verified current market feed.
+Market observations are fetched as daily history from the Yahoo Finance chart
+endpoint. They may be delayed, incomplete, unavailable, or incorrect and are
+not guaranteed real-time quotes.
+
+Segment economics are static illustrative fixtures, not verified company
+financial statements. Market-proxy assignments are configurable scenario
+assumptions, not measured sector relationships or predictions. The app does not
+recalculate fixture fundamentals from market movement.
 
 ## Troubleshooting
 
