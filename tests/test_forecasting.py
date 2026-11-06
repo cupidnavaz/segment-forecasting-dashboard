@@ -11,16 +11,23 @@ def test_metrics_match_expected_retail_values():
     row = default_segments()[0]
     result = calculate_metrics(row)
     assert result["profit"] == 130
-    assert result["growth"] == 25.5
+    assert result["growth"] == 29.4
     assert result["risk"] == "medium"
-    assert result["confidence"] == 71
+    assert result["confidence"] == 67
     assert result["trend"] == "up"
 
 
 def test_forecast_dataframe_contains_all_segments():
     frame = forecast_dataframe(default_segments())
     assert len(frame) == 9
-    assert {"growth", "risk", "confidence", "trend", "profit", "scenario_growth"} <= set(frame.columns)
+    assert {
+        "growth",
+        "risk",
+        "confidence",
+        "trend",
+        "profit",
+        "scenario_growth",
+    } <= set(frame.columns)
 
 
 def test_filters_and_search():

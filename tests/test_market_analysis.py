@@ -27,10 +27,10 @@ def test_indicators_recalculate_returns_averages_and_drawdown():
 
 
 def test_volatility_requires_multiple_returns():
-    indicators = market_indicators(_history([100.0, 101.0]))
+    indicators = market_indicators(_history([100.0, 101.0, 102.0]))
 
     assert pd.isna(indicators.iloc[0]["volatility_annualized_pct"])
-    assert pd.notna(indicators.iloc[1]["volatility_annualized_pct"])
+    assert pd.notna(indicators.iloc[-1]["volatility_annualized_pct"])
 
 
 def test_empty_history_returns_expected_columns():
@@ -38,7 +38,9 @@ def test_empty_history_returns_expected_columns():
 
     assert "drawdown_pct" in indicators
     assert indicators.empty
-    assert market_risk_briefing(indicators) == ["No observations are available for descriptive analysis."]
+    assert market_risk_briefing(indicators) == [
+        "No observations are available for descriptive analysis."
+    ]
 
 
 def test_briefing_is_descriptive_and_never_issues_trade_instruction():

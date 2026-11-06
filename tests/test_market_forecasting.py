@@ -21,7 +21,8 @@ def _history(prices: list[float], symbol: str = "^GSPC") -> pd.DataFrame:
 
 
 def test_proxy_returns_uses_last_available_lookback_observations():
-    assert proxy_returns(_history([100.0, 100.0, 110.0]), lookback=2)["^GSPC"] == pytest.approx(10.0)
+    result = proxy_returns(_history([100.0, 100.0, 110.0]), lookback=2)
+    assert result["^GSPC"] == pytest.approx(10.0)
 
 
 def test_live_proxy_changes_growth_and_is_bounded():

@@ -39,8 +39,11 @@ def proxy_returns(history: pd.DataFrame, lookback: int = 5) -> dict[str, float]:
     returns: dict[str, float] = {}
     for symbol, group in history.sort_values("date").groupby("symbol", sort=False):
         closes = pd.to_numeric(group["close"], errors="coerce").dropna()
-        if len(closes) > lookback and closes.iloc[-lookback - 1] != 0:
-            returns[str(symbol)] = float((closes.iloc[-1] / closes.iloc[-lookback - 1] - 1) * 100)
+        if len(closes) >= 2:
+            periods = min(lookback, len(closes) - 1)
+            starting_close = closes.iloc[-periods - 1]
+            if starting_close != 0:
+                returns[str(symbol)] = float((closes.iloc[-1] / starting_close - 1) * 100)
     return returns
 
 
@@ -79,7 +82,11 @@ def market_linked_forecast(
     frame["market_proxy"] = frame["segment"].map(proxy_map).fillna("")
     frame["proxy_return_pct"] = frame["market_proxy"].map(changes)
     frame["market_adjustment_pp"] = (
-        frame["proxy_return_pct"].fillna(0.0).mul(sensitivity).clip(-max_adjustment, max_adjustment).round(2)
+        frame["proxy_return_pct"]
+        .fillna(0.0)
+        .mul(sensitivity)
+        .clip(-max_adjustment, max_adjustment)
+        .round(2)
     )
     frame["scenario_growth"] = (
         frame["growth"] + float(scenario) + frame["market_adjustment_pp"]
