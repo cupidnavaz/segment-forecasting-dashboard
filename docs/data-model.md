@@ -24,9 +24,9 @@ Calculated fields:
 | `profit` | Revenue minus costs |
 | `profit_margin` | Profit divided by revenue |
 | `growth` | Base calculated growth |
-| `scenario_growth` | Growth plus scenario adjustment |
+| `scenario_growth` | Base growth plus user scenario adjustment and, in the live-linked scenario view, a bounded illustrative market-proxy adjustment |
 | `risk` | `low`, `medium`, or `high` |
 | `confidence` | Bounded forecast confidence score |
 | `trend` | `up`, `flat`, or `down` |
 
-The baseline data is inherited from the supplied HTML source and should be treated as dashboard/demo data unless a business data source is connected.
+The baseline data is inherited from the supplied HTML source and should be treated as dashboard/demo data unless a business data source is connected. Market-proxy mappings are illustrative and do not establish causal relationships; live market data does not update segment fundamentals.

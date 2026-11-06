@@ -28,6 +28,19 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Machine-local data
+/.bash_history
+/.gitconfig
+/.lesshst
+/.python_history
+/.cache/
+/.config/
+/.local/
+/.npm/
+/.playwright-mcp/
+/.ssh/
+/storage/
+
 # Generated exports
 exports/
 reports/generated/

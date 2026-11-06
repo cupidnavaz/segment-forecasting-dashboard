@@ -1,0 +1,147 @@
+{
+  "title": "Choose the dashboard's visual direction",
+  "question": "Which direction should shape the redesigned market-intelligence dashboard? Choose a direction or ask for another set.",
+  "options": [
+    {
+      "id": "assigned-statistical-atlas",
+      "kind": "assigned",
+      "label": "The Statistical Atlas",
+      "kicker": "THE ROLL",
+      "lineage": "Nineteenth-century statistical atlases and printed data plates",
+      "thesis": "An analytical atlas makes each market series a clear, annotated plate.",
+      "palette": ["#263a50", "#f3eee3", "#9a4939", "#3d6c83", "#d0a64f"],
+      "materials": ["warm chart stock", "inked linework"],
+      "viewport": "A familiar dashboard shell leads with market pulse, then a large chart with a synchronized observation rule and clear data-source notes.",
+      "risk": "The historic reference can feel archival if the typography and interactions are timid.",
+      "raised": [
+        {
+          "from": "digital-design-canon-monochrome-product-marketing",
+          "raise": "Keep each claim beside the evidence that supports it, without inheriting the challenger’s neutral-only palette."
+        },
+        {
+          "from": "pop-culture-shelf-character-goods-catalog",
+          "raise": "Keep instrument lists finite and sortable, without turning market observations into characters."
+        },
+        {
+          "from": "notation-diagram-systems-labanotation",
+          "raise": "Make comparison axes and units explicit wherever multiple series or indicators meet."
+        },
+        {
+          "from": "operate-b-exposure-record-zone-sheets",
+          "raise": "Show adjustments as numeric deltas with clear units and limits, not as implied forecasts."
+        }
+      ],
+      "html": ".impeccable/mocks/decision/assigned-statistical-atlas.html"
+    },
+    {
+      "id": "pick-market-broadsheet",
+      "kind": "pick",
+      "kicker": "IMPECCABLE’S PICK",
+      "label": "The Market Broadsheet",
+      "lineage": "Financial newspapers’ market tables and editorial data pages",
+      "thesis": "A crisp market desk pairs every headline reading with its history and source.",
+      "palette": ["#27342f", "#f8f7f3", "#a84632", "#397358"],
+      "materials": ["uncoated newsprint", "ink and ruled tables"],
+      "viewport": "A deep-green navigation rail anchors a concise market edition: live snapshot first, price history and latest observations side by side.",
+      "risk": "The familiar financial-news reference is effective but conventional by design.",
+      "html": ".impeccable/mocks/decision/pick-market-broadsheet.html"
+    },
+    {
+      "id": "challenger-reference-setting",
+      "kind": "challenger",
+      "catalogId": "rw-centre-rail-reference-setting",
+      "label": "The Reference-Setting Dashboard",
+      "lineage": "Wide-margin reference editions with a central annotation rail",
+      "thesis": "A shared rail connects every plotted series to its notes and measurements.",
+      "palette": ["#30362f", "#eee7d8", "#a93628", "#3d6c83"],
+      "materials": ["bone paper", "vermilion ruling"],
+      "viewport": "The normal dashboard shell stays intact; a central rule marks chart dates and aligns annotations with the chosen instrument.",
+      "case": "Competitive: annotations and measurement context improve clarity, though the editorial source is less native to market users.",
+      "risk": "A narrow central rail can consume chart space or become a layout gimmick.",
+      "html": ".impeccable/mocks/decision/challenger-reference-setting.html"
+    },
+    {
+      "id": "challenger-transit-diagram",
+      "kind": "challenger",
+      "catalogId": "wayfinding-cartography-signage-midnight-transit-diagram",
+      "label": "The Instrument Network",
+      "lineage": "Metropolitan wayfinding diagrams and route-color systems",
+      "thesis": "Distinct instrument paths stay easy to follow as a shared time-scale view grows.",
+      "palette": ["#101d31", "#f4f4ed", "#f15458", "#30a9e3", "#efb441", "#31b98a"],
+      "materials": ["midnight enamel", "porcelain route inks"],
+      "viewport": "Standard market controls frame a multiseries price chart; each instrument’s separate path is color-coded and selectable.",
+      "case": "Competitive: strong instrument identification, but route language risks suggesting relationships the data does not establish.",
+      "risk": "A route metaphor can imply causality; series must remain explicitly independent.",
+      "html": ".impeccable/mocks/decision/challenger-transit-diagram.html"
+    },
+    {
+      "id": "challenger-monochrome-marketing",
+      "kind": "challenger",
+      "catalogId": "digital-design-canon-monochrome-product-marketing",
+      "label": "Monochrome Proof Pages",
+      "lineage": "Minimal software product pages with claim-and-proof pairing",
+      "thesis": "A restrained product grid pairs every metric with its evidence.",
+      "palette": ["#f7f7f5", "#171918", "#34725c"],
+      "materials": ["neutral paper", "soft image grounds"],
+      "verdict": "declined",
+      "case": "Declined: claim-and-proof pairing is useful, but the marketing-page lineage identifies less with daily market analysis and adds no stronger data model.",
+      "kept": "Place each reading beside its source and supporting evidence.",
+      "risk": "The neutral-only treatment can flatten distinctions between market series and statuses."
+    },
+    {
+      "id": "challenger-character-catalog",
+      "kind": "challenger",
+      "catalogId": "pop-culture-shelf-character-goods-catalog",
+      "label": "The Ranked Roster",
+      "lineage": "Finite collectible catalogs and ranked character rosters",
+      "thesis": "A ranked list makes the selected instruments and segments easy to scan.",
+      "palette": ["#f4e9e9", "#263143", "#d44c55", "#85b8a8"],
+      "materials": ["pastel stock", "flat color cells"],
+      "verdict": "declined",
+      "case": "Declined: a ranked roster is clear, but character-goods culture misidentifies a serious market-insight workspace.",
+      "kept": "Keep instrument and segment lists finite, scannable, and sortable.",
+      "risk": "The catalog treatment would make market data feel decorative."
+    },
+    {
+      "id": "challenger-labanotation",
+      "kind": "challenger",
+      "catalogId": "notation-diagram-systems-labanotation",
+      "label": "The Comparison Score",
+      "lineage": "Labanotation’s mirrored columns and duration marks",
+      "thesis": "Paired columns make parallel measurements and time windows explicit.",
+      "palette": ["#f8f7f2", "#222623", "#8d5140"],
+      "materials": ["score paper", "solid and hatched marks"],
+      "verdict": "declined",
+      "case": "Declined: mirrored comparison columns help, but a movement-score grammar does not fit the audience or the market task.",
+      "kept": "Label comparison axes, periods, and units explicitly.",
+      "risk": "The score metaphor can make independent time series appear synchronized."
+    },
+    {
+      "id": "challenger-exposure-record",
+      "kind": "challenger",
+      "catalogId": "operate-b-exposure-record-zone-sheets",
+      "label": "The Measured Exposure",
+      "lineage": "Darkroom exposure records and tonal-zone charts",
+      "thesis": "Every adjustment is shown as a measured delta against an explicit baseline.",
+      "palette": ["#f0eee7", "#232827", "#bb3b83"],
+      "materials": ["backlit neutral scale", "translucent annotation sheets"],
+      "verdict": "declined",
+      "case": "Declined: precise deltas help explain scenario controls, but darkroom practice is remote from market users and the visual layers obscure live history.",
+      "kept": "Show scenario adjustments numerically with units, baselines, and caps.",
+      "risk": "Layered overlays could obscure the observed market series."
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "canon": true,
+  "canonCard": {
+    "kind": "canon",
+    "label": "The category standard",
+    "thesis": "A conventional market dashboard, executed at full craft.",
+    "palette": ["#ffffff", "#17212b", "#287a67", "#c64f3d"],
+    "materials": ["clean chart grid", "clear status color"],
+    "viewport": "Market KPIs lead above an interactive price chart, with indicators and segment scenarios in familiar navigation.",
+    "risk": "This polished category pattern is less distinctive by design."
+  }
+}

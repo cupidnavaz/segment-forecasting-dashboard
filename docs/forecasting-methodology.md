@@ -56,10 +56,13 @@ The result is rounded and bounded between 55 and 98.
 
 ## Scenario adjustment
 
-The scenario slider adds a fixed percentage-point adjustment to calculated growth:
+The scenario slider adds a fixed percentage-point adjustment to calculated growth. In the live-linked scenario view, a separate bounded proxy adjustment is also applied:
 
 ```text
-scenario_growth = growth + scenario
+market_adjustment_pp =
+    clip(proxy_return_over_lookback × sensitivity, -maximum_adjustment, +maximum_adjustment)
+
+scenario_growth = growth + scenario + market_adjustment_pp
 ```
 
-This is a scenario sensitivity tool, not a statistical forecasting model. It should not be interpreted as probabilistic forecasting or as evidence of causality.
+Proxy mappings are illustrative, editable assumptions—not measured sector betas. The bounded market-linked result is a scenario sensitivity tool, not a statistical forecasting model. It should not be interpreted as probabilistic forecasting or as evidence of causality. Market movements do not recalculate fixture revenue, costs, margin, churn, or confidence.
